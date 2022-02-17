@@ -7,6 +7,7 @@ var velocity := Vector2.ZERO
 export var speed := 500.0
 export var jump_speed := 600.0
 export var run_lerp := 6.0
+export var air_lerp := 2.0
 export var idle_lerp := 8.0
 export var gravity := Vector2(0, 1000.0)
 var aim_angle := 0.0
@@ -25,11 +26,16 @@ func _physics_process(delta):
 			velocity.x = lerp(velocity.x, dir.x*speed, run_lerp * delta)
 		else:
 			velocity.x = lerp(velocity.x, 0, idle_lerp * delta)
-		
+	else:
+		if dir.x and abs(velocity.x) < speed:
+			velocity.x = lerp(velocity.x, dir.x*speed, air_lerp * delta)
 	velocity += gravity*delta
 	if get_jump() and is_on_floor():
 		velocity.y -= jump_speed
-
+	
+	if Input.is_action_pressed("ui_down") and is_instance_valid(rope):
+		rope.queue_free()
+	
 	if shoot:
 		shoot = false
 		var arrow = ARROW.instance()
