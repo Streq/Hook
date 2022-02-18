@@ -11,17 +11,29 @@ func _physics_process(delta):
 		var bodyA = pointA.get_parent()
 		var bodyB = pointB.get_parent()
 		
-		if bodyA is KinematicBody2D:
-			var dist = (pointB.global_position - pointA.global_position)
-			if dist.length_squared() > length*length:
+		var dist = (pointB.global_position - pointA.global_position)
+		if dist.length_squared() > length*length:
+			var arrow = bodyB
+			var norm = dist.normalized()
+				
+			if is_instance_valid(arrow.hit_body):
 #				bodyA.velocity += dist.normalized() * delta * 10000
-				var norm = dist.normalized()
-				bodyA.velocity += bodyA.move_and_slide(norm*100,Vector2.UP)
+				bodyA.velocity += norm*50 #bodyA.move_and_slide(norm*100,Vector2.UP)
 				var projection : Vector2 = bodyA.velocity.project(norm)
 				print(projection.dot(norm))
 				if projection.dot(norm) < 0:
 					bodyA.velocity -= projection
 				pass
+			else:
+				arrow.velocity -= norm*300
+				arrow.velocity = lerp(arrow.velocity, Vector2.ZERO, delta*4)
+				var projection : Vector2 = arrow.velocity.project(norm)
+				if projection.dot(norm) < 0:
+					length = 0.0
+					arrow.modulate = Color.purple
+					arrow.get_node("player_area").set_deferred("monitoring", true)
+					arrow.get_node("terrain_area").set_deferred("monitoring", false)
+		
 		update_display()
 
 
