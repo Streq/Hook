@@ -20,7 +20,7 @@ func _physics_process(delta):
 #				bodyA.velocity += dist.normalized() * delta * 10000
 				bodyA.velocity += norm*50 #bodyA.move_and_slide(norm*100,Vector2.UP)
 				var projection : Vector2 = bodyA.velocity.project(norm)
-				print(projection.dot(norm))
+#				print(projection.dot(norm))
 				if projection.dot(norm) < 0:
 					bodyA.velocity -= projection
 				pass
