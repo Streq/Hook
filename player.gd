@@ -49,14 +49,14 @@ func _physics_process(delta):
 		arrow.get_node("terrain_area").set_deferred("monitoring", false)
 		
 	
-	if shoot and (!with_rope or !is_instance_valid(rope)):
+	if shoot and !is_instance_valid(rope):
 		var arrow = ARROW.instance()
 		arrow.rotation = aim_angle
 		arrow.position = position
 		arrow.velocity = velocity
 		velocity -= arrow.recoil * Vector2(cos(aim_angle),sin(aim_angle))
 		get_parent().add_child(arrow)
-		if with_rope and !is_instance_valid(rope):
+		if with_rope:
 			add_rope_to_arrow(arrow)
 			arrow.connect("landed", self, "_on_arrow_with_rope_landed", [arrow, rope])
 			arrow.connect("returned", self, "_on_arrow_with_rope_returned", [arrow, rope])
@@ -112,7 +112,7 @@ func add_rope_to_arrow(arrow):
 
 func _on_arrow_with_rope_landed(arrow, rope):
 	if is_instance_valid(rope):
-#		rope.length = 0.0
+		rope.length = min(max_rope_length, to_local(arrow.global_position).length())
 		pass
 		
 func _on_arrow_with_rope_returned(arrow, rope):
