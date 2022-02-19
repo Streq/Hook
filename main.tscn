@@ -12,10 +12,10 @@ margin_top = 200.0
 margin_right = -261.0
 margin_bottom = 367.0
 rect_scale = Vector2( 1.5, 1.5 )
-text = "mouse izquierdo - disparar flecha
-mouse derecho - disparar gancho
+text = "click izquierdo - disparar flecha
+click derecho - disparar gancho
+soltar click derecho- guardar gancho
 W - saltar
-S - guardar gancho
 A,D - moverse
 E - desenrollar cable del gancho
 Q - enrollar cable del gancho
