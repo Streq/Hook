@@ -35,7 +35,6 @@ func look_for_target():
 	if is_instance_valid(target):
 		var space_state = get_world_2d().direct_space_state
 		var result = space_state.intersect_ray(get_parent().global_position, target.global_position, [get_parent()])
-		print(result.collider.name)
 		return (result.has("collider") and result.collider == target)
 
 func _on_shoot_cooldown_timeout():
