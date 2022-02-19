@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://arrow.tscn" type="PackedScene" id=3]
 [ext_resource path="res://rope.tscn" type="PackedScene" id=4]
+[ext_resource path="res://player/shooter.gd" type="Script" id=6]
+[ext_resource path="res://player/input_state.gd" type="Script" id=7]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 32, 32 )
@@ -15,11 +17,23 @@ script = ExtResource( 1 )
 ARROW = ExtResource( 3 )
 ROPE = ExtResource( 4 )
 
+[node name="hurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+shape = SubResource( 3 )
+
+[node name="input" type="Node" parent="."]
+script = ExtResource( 7 )
+
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 3 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
+[node name="shooter" type="Node2D" parent="."]
+script = ExtResource( 6 )
+
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]

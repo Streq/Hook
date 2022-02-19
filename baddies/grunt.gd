@@ -1,7 +1,5 @@
 extends KinematicBody2D
 
-signal dead()
-
 export var ARROW : PackedScene
 export var ROPE : PackedScene
 
@@ -46,7 +44,6 @@ func _physics_process(delta):
 		arrow.hit_body = null
 		rope.length = 0.0
 		arrow.modulate = Color.purple
-		
 		arrow.get_node("player_area").set_deferred("monitoring", true)
 		arrow.get_node("terrain_area").set_deferred("monitoring", false)
 		
@@ -57,15 +54,14 @@ func _physics_process(delta):
 		arrow.rotation = aim_angle
 		arrow.position = position
 		arrow.velocity += velocity
-		
 		velocity -= arrow.recoil * Vector2(cos(aim_angle),sin(aim_angle))
 		get_parent().add_child(arrow)
 		if with_rope:
 			add_rope_to_arrow(arrow)
 			arrow.connect("landed", self, "_on_arrow_with_rope_landed", [arrow, rope])
 			arrow.connect("returned", self, "_on_arrow_with_rope_returned", [arrow, rope])
-			arrow.get_node("hitbox").set_deferred("monitorable", false)
 			arrow.get_node("hitbox").set_deferred("monitoring", false)
+			arrow.get_node("hitbox").set_deferred("monitorable", false)
 			with_rope = false
 	shoot = false
 		
@@ -125,13 +121,3 @@ func _jump(dir):
 	elif is_on_wall() and dir.x:
 		velocity.y -= jump_speed * sqrt_2_inv
 		velocity.x -= dir.x*jump_speed * sqrt_2_inv
-		
-		
-func die():
-	emit_signal("dead")
-	queue_free()
-
-
-func _on_hurtbox_area_entered(area):
-	if area.owner.caster != self:
-		die()

@@ -26,7 +26,7 @@ func _physics_process(delta):
 				pass
 			else:
 				arrow.velocity -= norm*600
-				arrow.velocity = lerp(arrow.velocity, Vector2.ZERO, delta*4)
+				arrow.velocity = lerp(arrow.velocity, Vector2.ZERO, delta*8)
 				var projection : Vector2 = arrow.velocity.project(norm)
 				if projection.dot(norm) < 0:
 					length = 0.0
