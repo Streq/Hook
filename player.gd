@@ -40,7 +40,7 @@ func _physics_process(delta):
 		elif is_on_wall() and dir.x:
 			velocity.y -= jump_speed * sqrt_2_inv
 			velocity.x -= dir.x*jump_speed * sqrt_2_inv
-	if Input.is_action_pressed("ui_down") and is_instance_valid(rope):
+	if Input.is_action_just_released("shoot_hook") and is_instance_valid(rope):
 		var arrow = rope.pointB.get_parent()
 		arrow.hit_body = null
 		rope.length = 0.0
@@ -53,7 +53,7 @@ func _physics_process(delta):
 		var arrow = ARROW.instance()
 		arrow.rotation = aim_angle
 		arrow.position = position
-		arrow.velocity = velocity
+		arrow.velocity += velocity
 		velocity -= arrow.recoil * Vector2(cos(aim_angle),sin(aim_angle))
 		get_parent().add_child(arrow)
 		if with_rope:

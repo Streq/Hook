@@ -25,14 +25,14 @@ func _physics_process(delta):
 					bodyA.velocity -= projection
 				pass
 			else:
-				arrow.velocity -= norm*300
+				arrow.velocity -= norm*600
 				arrow.velocity = lerp(arrow.velocity, Vector2.ZERO, delta*4)
 				var projection : Vector2 = arrow.velocity.project(norm)
 				if projection.dot(norm) < 0:
 					length = 0.0
-					arrow.modulate = Color.purple
+#					arrow.modulate = Color.purple
 					arrow.get_node("player_area").set_deferred("monitoring", true)
-					arrow.get_node("terrain_area").set_deferred("monitoring", false)
+#					arrow.get_node("terrain_area").set_deferred("monitoring", false)
 		
 		update_display()
 
