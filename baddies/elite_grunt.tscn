@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://baddies/grunt.tscn" type="PackedScene" id=2]
+[ext_resource path="res://baddies/rotate_to_aim.gd" type="Script" id=3]
+[ext_resource path="res://baddies/shieldbox.gd" type="Script" id=4]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 2000.0
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 33, 56 )
+
+[node name="elite_grunt" instance=ExtResource( 2 )]
+
+[node name="controller" parent="." index="3"]
+rotation = 3.14159
+vision_angle = 210.0
+
+[node name="CollisionShape2D" parent="controller/player_detection" index="0"]
+shape = SubResource( 2 )
+
+[node name="shoot_cooldown" parent="controller" index="1"]
+wait_time = 0.1
+
+[node name="rotate_to_aim" type="Node2D" parent="." index="5"]
+script = ExtResource( 3 )
+
+[node name="shieldbox" type="Area2D" parent="rotate_to_aim" index="0"]
+modulate = Color( 0, 1, 0, 1 )
+collision_layer = 0
+collision_mask = 8
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rotate_to_aim/shieldbox" index="0"]
+position = Vector2( 64, 0 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="rotate_to_aim/shieldbox" index="1"]
+position = Vector2( 64, 0 )
+scale = Vector2( 1, 1.75 )
+texture = ExtResource( 1 )
+
+[connection signal="area_entered" from="rotate_to_aim/shieldbox" to="rotate_to_aim/shieldbox" method="_on_shieldbox_area_entered"]
+
+[editable path="controller"]

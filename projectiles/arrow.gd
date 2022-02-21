@@ -45,4 +45,4 @@ func _on_player_area_body_entered(body):
 func _on_hitbox_area_entered(area):
 	if area.owner != caster:
 		queue_free()
-		area.owner.velocity += velocity*0.2
+#		area.owner.velocity += velocity*0.2

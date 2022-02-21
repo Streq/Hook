@@ -13,8 +13,10 @@ export var air_lerp := 2.0
 export var idle_lerp := 8.0
 export var gravity := Vector2(0, 1000.0)
 export var max_rope_length := 500.0
-
+export var team := 0
 onready var input = $input
+onready var rope_point = $rope_point
+
 
 var shoot := false
 var with_rope := false
@@ -27,7 +29,7 @@ const sqrt_2_inv =  1.0/sqrt(2.0)
 func _physics_process(delta):
 	
 	var dir : Vector2 = get_input_dir()
-	velocity = move_and_slide(velocity+dir, Vector2.UP)
+	velocity = move_and_slide(velocity, Vector2.UP)
 	velocity += gravity*delta
 	
 	_move(dir, delta)
@@ -41,17 +43,18 @@ func _physics_process(delta):
 		shoot = true
 		aim_angle = input.aim_angle
 
-	if input.is_action_just_released("shoot_hook") and is_instance_valid(rope):
-		var arrow = rope.pointB.get_parent()
-		arrow.hit_body = null
-		rope.length = 0.0
-		arrow.modulate = Color.purple
+	if is_instance_valid(rope):
+		$rope_point.position = (rope.pointB.global_position - rope.pointA.global_position).tangent().normalized()*dir.x*10
 		
-		arrow.get_node("player_area").set_deferred("monitoring", true)
-		arrow.get_node("terrain_area").set_deferred("monitoring", false)
-		
-	
-	if shoot and !is_instance_valid(rope):
+		if input.is_action_just_released("shoot_hook"):
+			var arrow = rope.pointB.get_parent()
+			arrow.hit_body = null
+			rope.length = 0.0
+			arrow.modulate = Color.purple
+			
+			arrow.get_node("player_area").set_deferred("monitoring", true)
+			arrow.get_node("terrain_area").set_deferred("monitoring", false)
+	elif shoot:
 		var arrow = ARROW.instance()
 		arrow.caster = self
 		arrow.rotation = aim_angle
@@ -70,13 +73,17 @@ func _physics_process(delta):
 	shoot = false
 		
 	
-	if is_instance_valid(rope) and is_instance_valid(rope.pointB.get_parent().hit_body):
-		if input.is_action_pressed("reel_in"):
-			rope.length = max(0, rope.length-300*delta)
-		if input.is_action_pressed("reel_out"):
-			rope.length = min(max_rope_length, rope.length+300*delta)
-		if input.is_action_pressed("insta_reel"):
-			rope.length = 0
+	if is_instance_valid(rope):
+		if is_instance_valid(rope.pointB):
+			if is_instance_valid(rope.pointB.get_parent().hit_body):
+				if input.is_action_pressed("reel_in"):
+					rope.length = max(0, rope.length-300*delta)
+				if input.is_action_pressed("reel_out"):
+					rope.length = min(max_rope_length, rope.length+300*delta)
+				if input.is_action_pressed("insta_reel"):
+					rope.length = 0
+		else: 
+			rope.queue_free()
 func get_jump():
 	return input.is_action_just_pressed("jump")
 
@@ -88,7 +95,7 @@ func add_rope_to_arrow(arrow):
 	if is_instance_valid(rope):
 		rope.queue_free()
 	var rope = ROPE.instance()
-	var a = Node2D.new()
+	var a = $rope_point
 	var b = Node2D.new()
 	
 	rope.pointA = a
@@ -97,7 +104,6 @@ func add_rope_to_arrow(arrow):
 	rope.length = max_rope_length
 	self.rope = rope
 
-	add_child(a)
 	arrow.add_child(b)
 	get_parent().add_child(rope)
 
@@ -117,6 +123,7 @@ func _move(dir, delta):
 		if dir.x:
 			velocity.x = lerp(velocity.x, dir.x*speed, run_lerp * delta)
 		else:
+			pass
 			velocity.x = lerp(velocity.x, 0, idle_lerp * delta)
 
 func _jump(dir):
