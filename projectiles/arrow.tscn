@@ -1,25 +1,26 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://projectiles/arrow.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://icon32.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16, 4 )
+extents = Vector2( 8, 2 )
 
 [node name="arrow" type="KinematicBody2D"]
 modulate = Color( 1, 0, 0, 1 )
 collision_layer = 0
 collision_mask = 0
 script = ExtResource( 1 )
-speed = 2200
+speed = 1100
 recoil = 0
+gravity = Vector2( 0, 490 )
 
 [node name="terrain_area" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="terrain_area"]
-position = Vector2( 16, 0 )
+position = Vector2( 8, 0 )
 shape = SubResource( 1 )
 
 [node name="player_area" type="Area2D" parent="."]
@@ -28,7 +29,7 @@ monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player_area"]
-position = Vector2( 16, 0 )
+position = Vector2( 8, 0 )
 shape = SubResource( 1 )
 
 [node name="hitbox" type="Area2D" parent="."]
@@ -36,11 +37,11 @@ collision_layer = 8
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
-position = Vector2( 16, 0 )
+position = Vector2( 8, 0 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 16, 0 )
+position = Vector2( 8, 0 )
 scale = Vector2( 0.5, 0.125 )
 texture = ExtResource( 2 )
 

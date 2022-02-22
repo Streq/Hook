@@ -18,14 +18,14 @@ func _physics_process(delta):
 				
 			if is_instance_valid(arrow.hit_body):
 #				bodyA.velocity += dist.normalized() * delta * 10000
-				bodyA.velocity += norm*50 #bodyA.move_and_slide(norm*100,Vector2.UP)
+				bodyA.velocity += norm*25 #bodyA.move_and_slide(norm*100,Vector2.UP)
 				var projection : Vector2 = bodyA.velocity.project(norm)
 #				print(projection.dot(norm))
 				if projection.dot(norm) < 0:
 					bodyA.velocity -= projection
 				pass
 			else:
-				arrow.velocity -= norm*600
+				arrow.velocity -= norm*300
 				arrow.velocity = lerp(arrow.velocity, Vector2.ZERO, delta*8)
 				var projection : Vector2 = arrow.velocity.project(norm)
 				if projection.dot(norm) < 0:
@@ -41,7 +41,7 @@ func update_display():
 	$display.global_position = (pointA.global_position + pointB.global_position) / 2
 	var dist = (pointA.global_position - pointB.global_position)
 	$display.rotation = (pointA.global_position - pointB.global_position).angle()
-	$display.scale.x = dist.length()/4
+	$display.scale.x = dist.length()
 	if dist.length_squared() > length*length:
 		$display.modulate = Color.red
 	else:
