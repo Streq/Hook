@@ -6,13 +6,14 @@ export var ARROW : PackedScene
 export var ROPE : PackedScene
 
 var velocity := Vector2.ZERO
-export var speed := 500.0
-export var jump_speed := 600.0
+export var speed := 250.0
+export var jump_speed := 300.0
+export var swing_distance := 10.0
 export var run_lerp := 6.0
 export var air_lerp := 2.0
 export var idle_lerp := 8.0
-export var gravity := Vector2(0, 1000.0)
-export var max_rope_length := 500.0
+export var gravity := Vector2(0, 500.0)
+export var max_rope_length := 250.0
 export var team := 0
 onready var input = $input
 onready var rope_point = $rope_point
@@ -29,7 +30,7 @@ const sqrt_2_inv =  1.0/sqrt(2.0)
 func _physics_process(delta):
 	
 	var dir : Vector2 = get_input_dir()
-	velocity = move_and_slide(velocity, Vector2.UP)
+	velocity = move_and_slide(velocity+dir*0.01, Vector2.UP)
 	velocity += gravity*delta
 	
 	_move(dir, delta)
@@ -44,7 +45,7 @@ func _physics_process(delta):
 		aim_angle = input.aim_angle
 
 	if is_instance_valid(rope):
-		$rope_point.position = (rope.pointB.global_position - rope.pointA.global_position).tangent().normalized()*dir.x*10
+		rope_point.position = (rope.pointB.global_position - rope.pointA.global_position).tangent().normalized()*dir.x*swing_distance
 		
 		if input.is_action_just_released("shoot_hook"):
 			var arrow = rope.pointB.get_parent()
@@ -95,7 +96,7 @@ func add_rope_to_arrow(arrow):
 	if is_instance_valid(rope):
 		rope.queue_free()
 	var rope = ROPE.instance()
-	var a = $rope_point
+	var a = rope_point
 	var b = Node2D.new()
 	
 	rope.pointA = a
