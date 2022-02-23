@@ -46,7 +46,7 @@ __meta__ = {
 [node name="goalzone" parent="." instance=ExtResource( 7 )]
 
 [node name="goalzone" parent="goalzone" index="0"]
-tile_data = PoolIntArray( 65544, 0, 0, 589861, 0, 0 )
+tile_data = PoolIntArray( 65544, 0, 0 )
 
 [connection signal="dead" from="player" to="player/restart_on_death" method="trigger"]
 [connection signal="ready" from="player" to="player/controller" method="_on_controlled_ready"]
