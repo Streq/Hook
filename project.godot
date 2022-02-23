@@ -13,20 +13,33 @@ _global_script_classes=[ {
 "class": "InputState",
 "language": "GDScript",
 "path": "res://player/input_state.gd"
+}, {
+"base": "Reference",
+"class": "InputUtils",
+"language": "GDScript",
+"path": "res://global/input_utils.gd"
+}, {
+"base": "Reference",
+"class": "RenderUtils",
+"language": "GDScript",
+"path": "res://global/render_utils.gd"
 } ]
 _global_script_class_icons={
-"InputState": ""
+"InputState": "",
+"InputUtils": "",
+"RenderUtils": ""
 }
 
 [application]
 
 config/name="Hook"
-run/main_scene="res://main.tscn"
+run/main_scene="res://levels/3.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Global="*res://global/global.gd"
+Levels="*res://global/levels.tscn"
 
 [input]
 
