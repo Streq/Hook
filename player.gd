@@ -17,7 +17,7 @@ export var max_rope_length := 250.0
 export var team := 0
 onready var input = $input
 onready var rope_point = $rope_point
-
+export var reel_speed = 100.0
 
 var shoot := false
 var with_rope := false
@@ -78,9 +78,9 @@ func _physics_process(delta):
 		if is_instance_valid(rope.pointB):
 			if is_instance_valid(rope.pointB.get_parent().hit_body):
 				if input.is_action_pressed("reel_in"):
-					rope.length = max(0, rope.length-300*delta)
+					rope.length = max(0, rope.length-reel_speed*delta)
 				if input.is_action_pressed("reel_out"):
-					rope.length = min(max_rope_length, rope.length+300*delta)
+					rope.length = min(max_rope_length, rope.length+reel_speed*3*delta)
 				if input.is_action_pressed("insta_reel"):
 					rope.length = 0
 		else: 
@@ -129,7 +129,10 @@ func _move(dir, delta):
 
 func _jump(dir):
 	if is_on_floor():
-		velocity.y -= jump_speed
+		if $floor_check.get_overlapping_bodies().size()>0:
+			velocity.y -= jump_speed
+		else:
+			velocity.y -= jump_speed*0.75
 	elif is_on_wall() and dir.x:
 		velocity.y -= jump_speed * sqrt_2_inv
 		velocity.x -= dir.x*jump_speed * sqrt_2_inv

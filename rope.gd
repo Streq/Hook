@@ -18,6 +18,7 @@ func _physics_process(delta):
 				
 			if is_instance_valid(arrow.hit_body):
 #				bodyA.velocity += dist.normalized() * delta * 10000
+#				bodyA.velocity += norm*25*(min(50.0*50.0, dist.length_squared()-length*length)/(50.0*50.0))
 				bodyA.velocity += norm*25 #bodyA.move_and_slide(norm*100,Vector2.UP)
 				var projection : Vector2 = bodyA.velocity.project(norm)
 #				print(projection.dot(norm))

@@ -15,6 +15,7 @@ collision_layer = 0
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player_detection"]
+visible = false
 shape = SubResource( 2 )
 
 [node name="shoot_cooldown" type="Timer" parent="."]
