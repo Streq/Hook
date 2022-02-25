@@ -4,7 +4,7 @@
 [ext_resource path="res://player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://killzone.tscn" type="PackedScene" id=3]
 [ext_resource path="res://player/controller.gd" type="Script" id=4]
-[ext_resource path="res://player/camera.gd" type="Script" id=5]
+[ext_resource path="res://player/camera.tscn" type="PackedScene" id=5]
 [ext_resource path="res://baddies/grunt.tscn" type="PackedScene" id=6]
 [ext_resource path="res://restart_trigger.gd" type="Script" id=7]
 [ext_resource path="res://baddies/elite_grunt.tscn" type="PackedScene" id=8]
@@ -43,9 +43,7 @@ script = ExtResource( 4 )
 [node name="restart_on_death" type="Node" parent="player"]
 script = ExtResource( 7 )
 
-[node name="Camera2D" type="Camera2D" parent="player"]
-current = true
-script = ExtResource( 5 )
+[node name="Camera2D" parent="player" instance=ExtResource( 5 )]
 
 [node name="killzone" parent="." instance=ExtResource( 3 )]
 

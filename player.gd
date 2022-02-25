@@ -1,6 +1,8 @@
 extends KinematicBody2D
 
 signal dead()
+signal has_rope()
+signal no_rope()
 
 export var ARROW : PackedScene
 export var ROPE : PackedScene
@@ -30,6 +32,8 @@ const sqrt_2_inv =  1.0/sqrt(2.0)
 func _physics_process(delta):
 	
 	var dir : Vector2 = get_input_dir()
+	if dir.x:
+		$Sprite.flip_h = dir.x < 0.0
 	velocity = move_and_slide(velocity+dir*0.01, Vector2.UP)
 	velocity += gravity*delta
 	
@@ -123,9 +127,13 @@ func _move(dir, delta):
 	if is_on_floor():
 		if dir.x:
 			velocity.x = lerp(velocity.x, dir.x*speed, run_lerp * delta)
+			$AnimationPlayer.play("run")
 		else:
-			pass
 			velocity.x = lerp(velocity.x, 0, idle_lerp * delta)
+			$AnimationPlayer.play("idle")
+	else:
+		$AnimationPlayer.play("air")
+
 
 func _jump(dir):
 	if is_on_floor():

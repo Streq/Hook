@@ -14,11 +14,9 @@ func out_of_focus():
 	for action in input.get_actions():
 		input.set_action_pressed(action, false)
 
-func _process(delta):
-	input.dir = Vector2(
-		float(Input.is_action_pressed("ui_right")) - float(Input.is_action_pressed("ui_left")),
-		float(Input.is_action_pressed("ui_down")) - float(Input.is_action_pressed("ui_up"))
-	)
+func _physics_process(delta):
+	input.dir = InputUtils.get_input_dir()
+	input.aim_angle = InputUtils.get_dist_to_mouse(get_parent()).angle()
 
 func _notification(what): #just in case, idk if this is needed
 	if what == MainLoop.NOTIFICATION_WM_FOCUS_IN:
@@ -39,5 +37,3 @@ func _input(event):
 		if event.is_action(action):
 			input.set_action_pressed(action, event.is_pressed())
 			return
-		
-		
