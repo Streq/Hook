@@ -4,7 +4,7 @@
 [ext_resource path="res://player/ledge_grab.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 1, 4 )
+extents = Vector2( 3, 4 )
 
 [node name="ledge_grab" type="CollisionShape2D"]
 shape = SubResource( 4 )

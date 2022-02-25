@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://asset/texture/ninja.png" type="Texture" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://player/input_state.gd" type="Script" id=7]
 [ext_resource path="res://asset/texture/crossbow.png" type="Texture" id=8]
 [ext_resource path="res://baddies/rotate_to_aim.tscn" type="PackedScene" id=9]
+[ext_resource path="res://player/hand.gd" type="Script" id=10]
+[ext_resource path="res://asset/texture/hand.png" type="Texture" id=11]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 12, 16 )
@@ -84,7 +86,7 @@ script = ExtResource( 7 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 hframes = 4
-frame = 1
+frame = 3
 
 [node name="rotate_to_aim" parent="." instance=ExtResource( 9 )]
 
@@ -104,9 +106,17 @@ script = ExtResource( 6 )
 position = Vector2( 13, -20 )
 input = NodePath("../input")
 
+[node name="hand" type="Sprite" parent="ledge_grab"]
+texture = ExtResource( 11 )
+script = ExtResource( 10 )
+
 [node name="ledge_grab2" parent="." instance=ExtResource( 5 )]
 position = Vector2( -13, -20 )
 input = NodePath("../input")
+
+[node name="hand" type="Sprite" parent="ledge_grab2"]
+texture = ExtResource( 11 )
+script = ExtResource( 10 )
 
 [node name="floor_check" type="Area2D" parent="."]
 collision_layer = 0
