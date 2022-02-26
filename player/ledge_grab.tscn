@@ -4,7 +4,7 @@
 [ext_resource path="res://player/ledge_grab.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 3, 3.5 )
+extents = Vector2( 3, 4 )
 
 [node name="ledge_grab" type="CollisionShape2D"]
 shape = SubResource( 4 )
@@ -27,7 +27,6 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ledge_check/wall_check"]
-position = Vector2( 0, 0.5 )
 shape = SubResource( 4 )
 
 [connection signal="ledge_entered" from="ledge_check" to="." method="set_deferred" binds= [ "disabled", false ]]

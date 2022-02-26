@@ -5,7 +5,8 @@ signal bounced()
 
 export var speed := 1200
 export var recoil := 50
-export var gravity := Vector2(0,980.0)
+export var gravity := Vector2(0,490.0)
+export var shooter_inertia := 0.0
 
 var hit_body = null
 var velocity := Vector2.ZERO
@@ -14,10 +15,20 @@ var hurt_caster = false
 
 onready var hitbox = $hitbox
 onready var player_area = $player_area
+onready var terrain_area = $terrain_area
 
-func _ready():
-	velocity += Vector2(speed,0).rotated(rotation)
-
+func init(shooter):
+	caster = shooter
+	rotation = shooter.aim_angle
+	position = shooter.position
+	
+	velocity += shooter.velocity*shooter_inertia
+	
+	var direction = Vector2(1,0).rotated(rotation)
+	velocity += direction*speed
+	shooter.velocity -= direction*recoil
+	
+	
 func _physics_process(delta):
 #	move_and_slide(velocity) 
 	var collision := move_and_collide(velocity*delta)
@@ -41,8 +52,10 @@ func _on_terrain_area_body_entered(body):
 		player_area.set_deferred("monitoring", false)
 		hitbox.set_deferred("monitoring", false)
 		hitbox.set_deferred("monitorable", false)
-		get_parent().remove_child(self)
-		body.add_child(self)
+		terrain_area.set_deferred("monitoring", false)
+		terrain_area.set_deferred("monitorable", false)
+		get_parent().call_deferred("remove_child", self)
+		body.call_deferred("add_child", self)
 		emit_signal("landed")
 
 

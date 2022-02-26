@@ -13,7 +13,7 @@ collision_mask = 0
 script = ExtResource( 1 )
 speed = 1100
 recoil = 0
-gravity = Vector2( 0, 490 )
+shooter_inertia = 1.0
 
 [node name="terrain_area" type="Area2D" parent="."]
 collision_layer = 0

@@ -4,8 +4,6 @@ var pointA : Node2D = null
 var pointB : Node2D = null
 export var length := 300.0
 
-
-
 func _physics_process(delta):
 	if is_instance_valid(pointA) and is_instance_valid(pointB):
 		var bodyA = pointA.get_parent()

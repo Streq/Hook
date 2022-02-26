@@ -57,12 +57,8 @@ func _physics_process(delta):
 			retrieve_rope(rope)
 	elif shoot:
 		var arrow = ARROW.instance()
-		arrow.caster = self
-		arrow.rotation = aim_angle
-		arrow.position = position
-		arrow.velocity += velocity
+		arrow.init(self)
 		
-		velocity -= arrow.recoil * Vector2(cos(aim_angle),sin(aim_angle))
 		get_parent().add_child(arrow)
 		if with_rope:
 			add_rope_to_arrow(arrow)
