@@ -41,6 +41,7 @@ func _physics_process(delta):
 	if get_jump():
 		_jump(dir)
 
+	#shoot logic
 	var shoot_hook = input.is_action_just_pressed("shoot_hook")
 	if shoot_hook:
 		with_rope = true
@@ -48,17 +49,12 @@ func _physics_process(delta):
 		shoot = true
 		aim_angle = input.aim_angle
 
+	
 	if is_instance_valid(rope):
 		rope_point.position = (rope.pointB.global_position - rope.pointA.global_position).tangent().normalized()*dir.x*swing_distance
 		
 		if input.is_action_just_released("shoot_hook"):
-			var arrow = rope.pointB.get_parent()
-			arrow.hit_body = null
-			rope.length = 0.0
-			arrow.modulate = Color.purple
-			
-			arrow.get_node("player_area").set_deferred("monitoring", true)
-			arrow.get_node("terrain_area").set_deferred("monitoring", false)
+			retrieve_rope(rope)
 	elif shoot:
 		var arrow = ARROW.instance()
 		arrow.caster = self
@@ -72,6 +68,7 @@ func _physics_process(delta):
 			add_rope_to_arrow(arrow)
 			arrow.connect("landed", self, "_on_arrow_with_rope_landed", [arrow, rope])
 			arrow.connect("returned", self, "_on_arrow_with_rope_returned", [arrow, rope])
+			arrow.connect("bounced", self, "_on_arrow_with_rope_bounced", [arrow, rope])
 			arrow.get_node("hitbox").set_deferred("monitorable", false)
 			arrow.get_node("hitbox").set_deferred("monitoring", false)
 			with_rope = false
@@ -122,7 +119,11 @@ func _on_arrow_with_rope_returned(arrow, rope):
 		rope.queue_free()
 	if is_instance_valid(arrow):
 		arrow.queue_free()
-		
+
+func _on_arrow_with_rope_bounced(arrow, rope):
+	retrieve_rope(rope)
+	
+
 func _move(dir, delta):
 	if is_on_floor():
 		if dir.x:
@@ -154,3 +155,13 @@ func die():
 func _on_hurtbox_area_entered(area):
 	if area.owner.caster != self:
 		die()
+		
+func retrieve_rope(rope):
+	if is_instance_valid(rope):
+		var arrow = rope.pointB.get_parent()
+		arrow.hit_body = null
+		rope.length = 0.0
+		arrow.modulate = Color.purple
+		arrow.get_node("CollisionShape2D").set_deferred("disabled", true)
+		arrow.get_node("player_area").set_deferred("monitoring", true)
+		arrow.get_node("terrain_area").set_deferred("monitoring", false)

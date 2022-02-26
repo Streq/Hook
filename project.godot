@@ -73,7 +73,7 @@ ui_down={
 }
 ui_end={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":82,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":84,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 shoot_arrow={
@@ -118,6 +118,9 @@ jump={
 
 2d_physics/layer_1="player"
 2d_physics/layer_2="terrain"
+2d_physics/layer_3="hurtbox"
+2d_physics/layer_4="hitbox"
+2d_physics/layer_5="projectile"
 
 [physics]
 

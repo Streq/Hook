@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://icon32.png" type="Texture" id=1]
 [ext_resource path="res://player/input_state.gd" type="Script" id=2]
-[ext_resource path="res://player.gd" type="Script" id=3]
+[ext_resource path="res://player/player.gd" type="Script" id=3]
 [ext_resource path="res://baddies/shoot_on_sight_controller.tscn" type="PackedScene" id=4]
 [ext_resource path="res://projectiles/weightless_arrow.tscn" type="PackedScene" id=5]
 
@@ -11,6 +11,55 @@ extents = Vector2( 16, 16 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 16, 16 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "air"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "idle"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "run"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 2 ]
+}
 
 [node name="grunt" type="KinematicBody2D"]
 collision_mask = 2
@@ -37,6 +86,11 @@ collision_mask = 8
 shape = SubResource( 3 )
 
 [node name="rope_point" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/air = SubResource( 4 )
+anims/idle = SubResource( 5 )
+anims/run = SubResource( 6 )
 
 [connection signal="ready" from="." to="controller" method="_on_controlled_ready"]
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]

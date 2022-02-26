@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://player.gd" type="Script" id=1]
+[ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://asset/texture/ninja.png" type="Texture" id=2]
 [ext_resource path="res://projectiles/arrow.tscn" type="PackedScene" id=3]
 [ext_resource path="res://rope.tscn" type="PackedScene" id=4]
@@ -107,6 +107,7 @@ position = Vector2( 13, -20 )
 input = NodePath("../input")
 
 [node name="hand" type="Sprite" parent="ledge_grab"]
+visible = false
 texture = ExtResource( 11 )
 script = ExtResource( 10 )
 
@@ -115,6 +116,7 @@ position = Vector2( -13, -20 )
 input = NodePath("../input")
 
 [node name="hand" type="Sprite" parent="ledge_grab2"]
+visible = false
 texture = ExtResource( 11 )
 script = ExtResource( 10 )
 

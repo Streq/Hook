@@ -8,7 +8,7 @@ extents = Vector2( 8, 2 )
 
 [node name="arrow" type="KinematicBody2D"]
 modulate = Color( 1, 0, 0, 1 )
-collision_layer = 0
+collision_layer = 16
 collision_mask = 0
 script = ExtResource( 1 )
 speed = 1100
@@ -47,6 +47,10 @@ texture = ExtResource( 2 )
 
 [node name="ttl" type="Timer" parent="."]
 wait_time = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 8, 0 )
+shape = SubResource( 1 )
 
 [connection signal="body_entered" from="terrain_area" to="." method="_on_terrain_area_body_entered"]
 [connection signal="body_entered" from="player_area" to="." method="_on_player_area_body_entered"]
