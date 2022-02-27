@@ -67,5 +67,8 @@ position = Vector2( 72, -2704 )
 
 [connection signal="dead" from="player" to="player/restart_on_death" method="trigger"]
 [connection signal="ready" from="player" to="player/controller" method="_on_controlled_ready"]
+[connection signal="ready" from="elite_grunt2" to="elite_grunt2/controller" method="_on_controlled_ready"]
 
 [editable path="killzone"]
+[editable path="elite_grunt2"]
+[editable path="elite_grunt2/controller"]

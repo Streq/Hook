@@ -1,0 +1,31 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://player/input_state.gd" type="Script" id=1]
+[ext_resource path="res://baddies/turret.gd" type="Script" id=2]
+[ext_resource path="res://baddies/shoot_on_sight_controller.tscn" type="PackedScene" id=3]
+[ext_resource path="res://projectiles/weightless_arrow.tscn" type="PackedScene" id=4]
+[ext_resource path="res://baddies/rotate_to_aim.tscn" type="PackedScene" id=5]
+[ext_resource path="res://icon32.png" type="Texture" id=6]
+[ext_resource path="res://asset/texture/turret.png" type="Texture" id=7]
+
+[node name="turret" type="Node2D"]
+script = ExtResource( 2 )
+ARROW = ExtResource( 4 )
+team = 1
+
+[node name="input" type="Node" parent="."]
+script = ExtResource( 1 )
+
+[node name="controller" parent="." instance=ExtResource( 3 )]
+input = NodePath("../input")
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0.458824, 0.458824, 0.458824, 1 )
+texture = ExtResource( 7 )
+
+[node name="rotate_to_aim" parent="." instance=ExtResource( 5 )]
+
+[node name="sprite_crossbow" type="Sprite" parent="rotate_to_aim"]
+position = Vector2( 8, 0 )
+scale = Vector2( 0.5, 0.125 )
+texture = ExtResource( 6 )

@@ -19,7 +19,7 @@ onready var terrain_area = $terrain_area
 
 func init(shooter):
 	caster = shooter
-	rotation = shooter.aim_angle
+	global_rotation = shooter.aim_angle + shooter.global_rotation
 	position = shooter.position
 	
 	velocity += shooter.velocity*shooter_inertia

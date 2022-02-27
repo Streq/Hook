@@ -73,11 +73,13 @@ script = ExtResource( 2 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 4
+frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="controller" parent="." instance=ExtResource( 4 )]
+input = NodePath("../input")
 
 [node name="hurtbox" type="Area2D" parent="."]
 collision_layer = 4
@@ -93,5 +95,4 @@ anims/air = SubResource( 4 )
 anims/idle = SubResource( 5 )
 anims/run = SubResource( 6 )
 
-[connection signal="ready" from="." to="controller" method="_on_controlled_ready"]
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
