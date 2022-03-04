@@ -33,10 +33,10 @@ func _physics_process(delta):
 					arrow.get_node("player_area").set_deferred("monitoring", true)
 #					arrow.get_node("terrain_area").set_deferred("monitoring", false)
 		
-		update_display()
+		update()
 
 
-func update_display():
+func _draw():
 	$display.global_position = (pointA.global_position + pointB.global_position) / 2
 	var dist = (pointA.global_position - pointB.global_position)
 	$display.rotation = (pointA.global_position - pointB.global_position).angle()

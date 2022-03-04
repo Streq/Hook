@@ -18,7 +18,6 @@ export var gravity := Vector2(0, 500.0)
 export var max_rope_length := 250.0
 export var team := 0
 onready var input = $input
-onready var rope_point = $rope_point
 export var reel_speed = 100.0
 
 var shoot := false
@@ -30,7 +29,6 @@ var rope = null
 const sqrt_2_inv =  1.0/sqrt(2.0)
 
 func _physics_process(delta):
-	
 	var dir : Vector2 = get_input_dir()
 	if dir.x:
 		$Sprite.flip_h = dir.x < 0.0
@@ -42,46 +40,46 @@ func _physics_process(delta):
 		_jump(dir)
 
 	#shoot logic
-	var shoot_hook = input.is_action_just_pressed("shoot_hook")
-	if shoot_hook:
-		with_rope = true
-	if shoot_hook or input.is_action_just_pressed("shoot_arrow"):
-		shoot = true
-		aim_angle = input.aim_angle
-
-	
-	if is_instance_valid(rope):
-		rope_point.position = (rope.pointB.global_position - rope.pointA.global_position).tangent().normalized()*dir.x*swing_distance
-		
-		if input.is_action_just_released("shoot_hook"):
-			retrieve_rope(rope)
-	elif shoot:
-		var arrow = ARROW.instance()
-		arrow.init(self)
-		
-		get_parent().add_child(arrow)
-		if with_rope:
-			add_rope_to_arrow(arrow)
-			arrow.connect("landed", self, "_on_arrow_with_rope_landed", [arrow, rope])
-			arrow.connect("returned", self, "_on_arrow_with_rope_returned", [arrow, rope])
-			arrow.connect("bounced", self, "_on_arrow_with_rope_bounced", [arrow, rope])
-			arrow.get_node("hitbox").set_deferred("monitorable", false)
-			arrow.get_node("hitbox").set_deferred("monitoring", false)
-			with_rope = false
-	shoot = false
-		
-	
-	if is_instance_valid(rope):
-		if is_instance_valid(rope.pointB):
-			if is_instance_valid(rope.pointB.get_parent().hit_body):
-				if input.is_action_pressed("reel_in"):
-					rope.length = max(0, rope.length-reel_speed*delta)
-				if input.is_action_pressed("reel_out"):
-					rope.length = min(max_rope_length, rope.length+reel_speed*3*delta)
-				if input.is_action_pressed("insta_reel"):
-					rope.length = 0
-		else: 
-			rope.queue_free()
+#	var shoot_hook = input.is_action_just_pressed("shoot_hook")
+#	if shoot_hook:
+#		with_rope = true
+#	if shoot_hook or input.is_action_just_pressed("shoot_arrow"):
+#		shoot = true
+#		aim_angle = input.aim_angle
+#
+#
+#	if is_instance_valid(rope):
+#		rope_point.position = (rope.pointB.global_position - rope.pointA.global_position).tangent().normalized()*dir.x*swing_distance
+#
+#		if input.is_action_just_released("shoot_hook"):
+#			retrieve_rope(rope)
+#	elif shoot:
+#		var arrow = ARROW.instance()
+#		arrow.init(self)
+#
+#		get_parent().add_child(arrow)
+#		if with_rope:
+#			add_rope_to_arrow(arrow)
+#			arrow.connect("landed", self, "_on_arrow_with_rope_landed", [arrow, rope])
+#			arrow.connect("returned", self, "_on_arrow_with_rope_returned", [arrow, rope])
+#			arrow.connect("bounced", self, "_on_arrow_with_rope_bounced", [arrow, rope])
+#			arrow.get_node("hitbox").set_deferred("monitorable", false)
+#			arrow.get_node("hitbox").set_deferred("monitoring", false)
+#			with_rope = false
+#	shoot = false
+#
+#
+#	if is_instance_valid(rope):
+#		if is_instance_valid(rope.pointB):
+#			if is_instance_valid(rope.pointB.get_parent().hit_body):
+#				if input.is_action_pressed("reel_in"):
+#					rope.length = max(0, rope.length-reel_speed*delta)
+#				if input.is_action_pressed("reel_out"):
+#					rope.length = min(max_rope_length, rope.length+reel_speed*3*delta)
+#				if input.is_action_pressed("insta_reel"):
+#					rope.length = 0
+#		else: 
+#			rope.queue_free()
 func get_jump():
 	return input.is_action_just_pressed("jump")
 
@@ -89,35 +87,8 @@ func get_input_dir() -> Vector2:
 	return input.dir
 
 
-func add_rope_to_arrow(arrow):
-	if is_instance_valid(rope):
-		rope.queue_free()
-	var rope = ROPE.instance()
-	var a = rope_point
-	var b = Node2D.new()
-	
-	rope.pointA = a
-	rope.pointB = b
-	
-	rope.length = max_rope_length
-	self.rope = rope
 
-	arrow.add_child(b)
-	get_parent().add_child(rope)
 
-func _on_arrow_with_rope_landed(arrow, rope):
-	if is_instance_valid(rope):
-		rope.length = min(max_rope_length, to_local(arrow.global_position).length())
-		pass
-		
-func _on_arrow_with_rope_returned(arrow, rope):
-	if is_instance_valid(rope):
-		rope.queue_free()
-	if is_instance_valid(arrow):
-		arrow.queue_free()
-
-func _on_arrow_with_rope_bounced(arrow, rope):
-	retrieve_rope(rope)
 	
 
 func _move(dir, delta):

@@ -53,4 +53,5 @@ tile_data = PoolIntArray( 589837, 0, 0 )
 [connection signal="ready" from="player" to="player/controller" method="_on_controlled_ready"]
 
 [editable path="killzone"]
+[editable path="player"]
 [editable path="goalzone"]

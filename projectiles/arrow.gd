@@ -17,9 +17,9 @@ onready var hitbox = $hitbox
 onready var player_area = $player_area
 onready var terrain_area = $terrain_area
 
-func init(shooter):
+func init(shooter, angle):
 	caster = shooter
-	global_rotation = shooter.aim_angle + shooter.global_rotation
+	global_rotation = angle + shooter.global_rotation
 	position = shooter.position
 	
 	velocity += shooter.velocity*shooter_inertia

@@ -18,7 +18,7 @@ func _physics_process(delta):
 	
 	if shoot:
 		var arrow = ARROW.instance()
-		arrow.init(self)
+		arrow.init(self, aim_angle)
 		get_parent().add_child(arrow)
 	shoot = false
 		

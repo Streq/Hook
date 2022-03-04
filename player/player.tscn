@@ -99,10 +99,14 @@ texture = ExtResource( 8 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 3 )
 
+[node name="rope_point" type="Node2D" parent="."]
+
 [node name="shooter" type="Node2D" parent="."]
 script = ExtResource( 6 )
-
-[node name="rope_point" type="Node2D" parent="."]
+input = NodePath("../input")
+rope_point = NodePath("../rope_point")
+ARROW = ExtResource( 3 )
+ROPE = ExtResource( 4 )
 
 [node name="ledge_grab" parent="." instance=ExtResource( 5 )]
 position = Vector2( 13, -20 )

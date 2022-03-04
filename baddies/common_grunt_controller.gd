@@ -7,6 +7,13 @@ var shoot = false
 
 export var vision_angle := 90.0
 
+enum CURRENT_ACTION{
+	IDLE,
+	LOOK_AT_NOISE,
+	LOOK_AT_SOURCE_OF_NOISE,
+	AIM_AND_SHOOT,
+	WALK_TOWARDS
+}
 
 func _physics_process(delta):
 	if is_instance_valid(target) and look_for_target():

@@ -1,10 +1,15 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://asset/texture/grunt.png" type="Texture" id=1]
 [ext_resource path="res://player/input_state.gd" type="Script" id=2]
 [ext_resource path="res://player/player.gd" type="Script" id=3]
 [ext_resource path="res://baddies/shoot_on_sight_controller.tscn" type="PackedScene" id=4]
 [ext_resource path="res://projectiles/weightless_arrow.tscn" type="PackedScene" id=5]
+[ext_resource path="res://baddies/rotate_to_aim.tscn" type="PackedScene" id=6]
+[ext_resource path="res://asset/texture/crossbow.png" type="Texture" id=7]
+[ext_resource path="res://rope.tscn" type="PackedScene" id=8]
+[ext_resource path="res://projectiles/arrow.tscn" type="PackedScene" id=9]
+[ext_resource path="res://player/shooter.gd" type="Script" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
@@ -94,5 +99,18 @@ shape = SubResource( 3 )
 anims/air = SubResource( 4 )
 anims/idle = SubResource( 5 )
 anims/run = SubResource( 6 )
+
+[node name="rotate_to_aim" parent="." instance=ExtResource( 6 )]
+
+[node name="sprite_crossbow" type="Sprite" parent="rotate_to_aim"]
+position = Vector2( 6, 0 )
+texture = ExtResource( 7 )
+
+[node name="shooter" type="Node2D" parent="."]
+script = ExtResource( 10 )
+input = NodePath("../input")
+rope_point = NodePath("../rope_point")
+ARROW = ExtResource( 9 )
+ROPE = ExtResource( 8 )
 
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
