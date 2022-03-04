@@ -1,11 +1,9 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://asset/texture/ninja.png" type="Texture" id=2]
-[ext_resource path="res://projectiles/arrow.tscn" type="PackedScene" id=3]
-[ext_resource path="res://rope.tscn" type="PackedScene" id=4]
 [ext_resource path="res://player/ledge_grab.tscn" type="PackedScene" id=5]
-[ext_resource path="res://player/shooter.gd" type="Script" id=6]
+[ext_resource path="res://player/shooter.tscn" type="PackedScene" id=6]
 [ext_resource path="res://player/input_state.gd" type="Script" id=7]
 [ext_resource path="res://asset/texture/crossbow.png" type="Texture" id=8]
 [ext_resource path="res://baddies/rotate_to_aim.tscn" type="PackedScene" id=9]
@@ -71,9 +69,6 @@ tracks/0/keys = {
 [node name="player" type="KinematicBody2D"]
 collision_mask = 2
 script = ExtResource( 1 )
-ARROW = ExtResource( 3 )
-ROPE = ExtResource( 4 )
-max_rope_length = 275.0
 
 [node name="hurtbox" type="Area2D" parent="."]
 collision_layer = 4
@@ -101,12 +96,10 @@ shape = SubResource( 3 )
 
 [node name="rope_point" type="Node2D" parent="."]
 
-[node name="shooter" type="Node2D" parent="."]
-script = ExtResource( 6 )
-input = NodePath("../input")
-rope_point = NodePath("../rope_point")
-ARROW = ExtResource( 3 )
-ROPE = ExtResource( 4 )
+[node name="shooter" parent="." instance=ExtResource( 6 )]
+
+[node name="aim_assist" type="Node2D" parent="shooter"]
+script = ExtResource( 12 )
 
 [node name="ledge_grab" parent="." instance=ExtResource( 5 )]
 position = Vector2( 13, -20 )
@@ -139,8 +132,5 @@ anims/air = SubResource( 7 )
 anims/idle = SubResource( 5 )
 anims/run = SubResource( 6 )
 
-[node name="aim_assist" type="Node2D" parent="."]
-script = ExtResource( 12 )
-
-[connection signal="ready" from="." to="aim_assist" method="_on_shooter_ready"]
+[connection signal="ready" from="." to="shooter/aim_assist" method="_on_shooter_ready"]
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]

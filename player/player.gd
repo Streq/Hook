@@ -4,25 +4,15 @@ signal dead()
 signal has_rope()
 signal no_rope()
 
-export var ARROW : PackedScene
-export var ROPE : PackedScene
-
 var velocity := Vector2.ZERO
 export var speed := 250.0
 export var jump_speed := 300.0
-export var swing_distance := 10.0
 export var run_lerp := 6.0
 export var air_lerp := 2.0
 export var idle_lerp := 8.0
 export var gravity := Vector2(0, 500.0)
-export var max_rope_length := 250.0
 export var team := 0
 onready var input = $input
-export var reel_speed = 100.0
-
-var shoot := false
-var with_rope := false
-var aim_angle := 0.0
 
 var rope = null
 
@@ -39,57 +29,11 @@ func _physics_process(delta):
 	if get_jump():
 		_jump(dir)
 
-	#shoot logic
-#	var shoot_hook = input.is_action_just_pressed("shoot_hook")
-#	if shoot_hook:
-#		with_rope = true
-#	if shoot_hook or input.is_action_just_pressed("shoot_arrow"):
-#		shoot = true
-#		aim_angle = input.aim_angle
-#
-#
-#	if is_instance_valid(rope):
-#		rope_point.position = (rope.pointB.global_position - rope.pointA.global_position).tangent().normalized()*dir.x*swing_distance
-#
-#		if input.is_action_just_released("shoot_hook"):
-#			retrieve_rope(rope)
-#	elif shoot:
-#		var arrow = ARROW.instance()
-#		arrow.init(self)
-#
-#		get_parent().add_child(arrow)
-#		if with_rope:
-#			add_rope_to_arrow(arrow)
-#			arrow.connect("landed", self, "_on_arrow_with_rope_landed", [arrow, rope])
-#			arrow.connect("returned", self, "_on_arrow_with_rope_returned", [arrow, rope])
-#			arrow.connect("bounced", self, "_on_arrow_with_rope_bounced", [arrow, rope])
-#			arrow.get_node("hitbox").set_deferred("monitorable", false)
-#			arrow.get_node("hitbox").set_deferred("monitoring", false)
-#			with_rope = false
-#	shoot = false
-#
-#
-#	if is_instance_valid(rope):
-#		if is_instance_valid(rope.pointB):
-#			if is_instance_valid(rope.pointB.get_parent().hit_body):
-#				if input.is_action_pressed("reel_in"):
-#					rope.length = max(0, rope.length-reel_speed*delta)
-#				if input.is_action_pressed("reel_out"):
-#					rope.length = min(max_rope_length, rope.length+reel_speed*3*delta)
-#				if input.is_action_pressed("insta_reel"):
-#					rope.length = 0
-#		else: 
-#			rope.queue_free()
 func get_jump():
 	return input.is_action_just_pressed("jump")
 
 func get_input_dir() -> Vector2:
 	return input.dir
-
-
-
-
-	
 
 func _move(dir, delta):
 	if is_on_floor():

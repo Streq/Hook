@@ -19,7 +19,7 @@ func _ready():
 func _physics_process(delta):
 	var p : Vector2 = Vector2.ZERO
 	var shooter = get_parent()
-	var velocity = Vector2(1,0).rotated(shooter.input.aim_angle)*speed + shooter.velocity*shooter_inertia
+	var velocity = Vector2(1,0).rotated(shooter.input.aim_angle)*speed + shooter.get_parent().velocity*shooter_inertia
 	var max_length_squared = shooter.max_rope_length*shooter.max_rope_length
 	for i in points.size():
 		p += velocity*delta
