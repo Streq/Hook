@@ -23,11 +23,23 @@ _global_script_classes=[ {
 "class": "RenderUtils",
 "language": "GDScript",
 "path": "res://global/render_utils.gd"
+}, {
+"base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://util/state/state.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://util/state/state_machine.gd"
 } ]
 _global_script_class_icons={
 "InputState": "",
 "InputUtils": "",
-"RenderUtils": ""
+"RenderUtils": "",
+"State": "",
+"StateMachine": ""
 }
 
 [application]

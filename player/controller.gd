@@ -1,9 +1,8 @@
 extends Node
 
-var input = null
+onready var input = get_parent().get_node("input")
 
-func _on_controlled_ready():
-	input = get_parent().input
+func _ready():
 	in_focus()
 
 func in_focus():
@@ -24,7 +23,6 @@ func _notification(what): #just in case, idk if this is needed
 	elif what == MainLoop.NOTIFICATION_WM_FOCUS_OUT:
 		out_of_focus()
 		pass
-
 
 func _input(event):
 	if event is InputEventMouseButton:

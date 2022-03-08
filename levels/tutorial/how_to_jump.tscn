@@ -2,7 +2,7 @@
 
 [ext_resource path="res://player/camera.gd" type="Script" id=1]
 [ext_resource path="res://terrain/ground/ground.tscn" type="PackedScene" id=2]
-[ext_resource path="res://player/controller.gd" type="Script" id=3]
+[ext_resource path="res://player/controller.tscn" type="PackedScene" id=3]
 [ext_resource path="res://restart_trigger.gd" type="Script" id=4]
 [ext_resource path="res://terrain/hazard/killzone.tscn" type="PackedScene" id=5]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=6]
@@ -21,8 +21,7 @@ tile_data = PoolIntArray( 917506, 0, 0, 917507, 0, 0, 917508, 0, 0, 917509, 0, 0
 [node name="player" parent="." instance=ExtResource( 6 )]
 position = Vector2( -88, 304 )
 
-[node name="controller" type="Node" parent="player"]
-script = ExtResource( 3 )
+[node name="controller" parent="player" instance=ExtResource( 3 )]
 
 [node name="restart_on_death" type="Node" parent="player"]
 script = ExtResource( 4 )
@@ -50,7 +49,6 @@ __meta__ = {
 tile_data = PoolIntArray( 589837, 0, 0 )
 
 [connection signal="dead" from="player" to="player/restart_on_death" method="trigger"]
-[connection signal="ready" from="player" to="player/controller" method="_on_controlled_ready"]
 
 [editable path="killzone"]
 [editable path="player"]
