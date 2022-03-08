@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name Arrow
 signal landed()
 signal returned()
 signal bounced()

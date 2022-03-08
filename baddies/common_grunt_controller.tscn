@@ -7,7 +7,7 @@
 radius = 500.0
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 300.0
+radius = 108.812
 
 [node name="controller" type="Node2D"]
 process_priority = -1
@@ -34,3 +34,4 @@ shape = SubResource( 3 )
 [connection signal="body_entered" from="player_detection" to="." method="_on_player_detection_body_entered"]
 [connection signal="body_exited" from="player_detection" to="." method="_on_player_detection_body_exited"]
 [connection signal="timeout" from="shoot_cooldown" to="." method="_on_shoot_cooldown_timeout"]
+[connection signal="area_entered" from="noise_detection" to="." method="_on_noise_detection_area_entered"]

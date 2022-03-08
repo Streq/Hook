@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://rope.tscn" type="PackedScene" id=1]
 [ext_resource path="res://projectiles/arrow.tscn" type="PackedScene" id=2]
 [ext_resource path="res://player/shooter.gd" type="Script" id=3]
+[ext_resource path="res://projectiles/silent_arrow.tscn" type="PackedScene" id=4]
 
 [node name="shooter" type="Node2D"]
 script = ExtResource( 3 )
 input = NodePath("../input")
 rope_point = NodePath("../rope_point")
 ARROW = ExtResource( 2 )
+HOOK_ARROW = ExtResource( 4 )
 ROPE = ExtResource( 1 )

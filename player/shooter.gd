@@ -3,6 +3,7 @@ extends Node2D
 export (NodePath) onready var input = get_node(input) as InputState
 export (NodePath) onready var rope_point = get_node(rope_point) as Node2D
 export var ARROW : PackedScene
+export var HOOK_ARROW : PackedScene
 export var ROPE : PackedScene
 
 export var reel_speed = 100.0
@@ -41,7 +42,7 @@ func _physics_process(delta):
 		if input.is_action_just_released("shoot_hook"):
 			retrieve_rope(rope)
 	elif shoot:
-		var arrow = ARROW.instance()
+		var arrow = ARROW.instance() if !shoot_hook else HOOK_ARROW.instance()
 		var shooter = get_parent()
 		arrow.init(shooter, aim_angle)
 		

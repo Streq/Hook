@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://asset/texture/grunt.png" type="Texture" id=1]
 [ext_resource path="res://player/input_state.gd" type="Script" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://asset/texture/crossbow.png" type="Texture" id=7]
 [ext_resource path="res://rope.tscn" type="PackedScene" id=8]
 [ext_resource path="res://player/shooter.gd" type="Script" id=10]
-[ext_resource path="res://baddies/hearing.gd" type="Script" id=13]
 [ext_resource path="res://asset/texture/exclamation.png" type="Texture" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -66,9 +65,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 1, 2 ]
 }
-
-[sub_resource type="CircleShape2D" id=7]
-radius = 64.4981
 
 [sub_resource type="Animation" id=9]
 resource_name = "RESET"
@@ -145,15 +141,6 @@ rope_point = NodePath("../rope_point")
 ARROW = ExtResource( 5 )
 ROPE = ExtResource( 8 )
 
-[node name="hearing" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 32
-monitorable = false
-script = ExtResource( 13 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hearing"]
-shape = SubResource( 7 )
-
 [node name="sign_animation" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 9 )
 anims/heard_noise = SubResource( 8 )
@@ -168,4 +155,3 @@ texture = ExtResource( 14 )
 input = NodePath("../input")
 
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
-[connection signal="area_entered" from="hearing" to="hearing" method="_on_noise_entered"]
