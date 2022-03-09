@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/loose_arrow.wav-c390ab792bf84f82d10d0d4c169d4fd7.sample"
+
+[deps]
+
+source_file="res://asset/sound/loose_arrow.wav"
+dest_files=[ "res://.import/loose_arrow.wav-c390ab792bf84f82d10d0d4c169d4fd7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

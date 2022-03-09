@@ -28,7 +28,7 @@ func init(shooter, angle):
 	var direction = Vector2(1,0).rotated(rotation)
 	velocity += direction*speed
 	shooter.velocity -= direction*recoil
-	
+	$AudioStreamPlayer2D.play()
 	
 func _physics_process(delta):
 #	move_and_slide(velocity) 
