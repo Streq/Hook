@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/arrow_landed.wav-ea58c9cc71875e73d1a371419c4c46b4.sample"
+
+[deps]
+
+source_file="res://asset/sound/arrow_landed.wav"
+dest_files=[ "res://.import/arrow_landed.wav-ea58c9cc71875e73d1a371419c4c46b4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

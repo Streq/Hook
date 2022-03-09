@@ -1,8 +1,10 @@
 extends KinematicBody2D
 class_name Arrow
 signal landed()
+signal loose()
 signal returned()
 signal bounced()
+signal hit()
 
 export var speed := 1200
 export var recoil := 50
@@ -18,6 +20,8 @@ onready var hitbox = $hitbox
 onready var player_area = $player_area
 onready var terrain_area = $terrain_area
 
+func _ready():
+	emit_signal("loose")
 func init(shooter, angle):
 	caster = shooter
 	global_rotation = angle + shooter.global_rotation
@@ -28,7 +32,6 @@ func init(shooter, angle):
 	var direction = Vector2(1,0).rotated(rotation)
 	velocity += direction*speed
 	shooter.velocity -= direction*recoil
-	$AudioStreamPlayer2D.play()
 	
 func _physics_process(delta):
 #	move_and_slide(velocity) 
@@ -70,5 +73,6 @@ func _on_player_area_body_entered(body):
 
 func _on_hitbox_area_entered(area):
 	if area.owner != caster and !hurt_caster:
+		emit_signal("hit")
 		queue_free()
 #		area.owner.velocity += velocity*0.2

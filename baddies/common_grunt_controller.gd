@@ -27,27 +27,33 @@ func _physics_process(delta):
 		current_action = Action.AIM_AND_SHOOT
 	match current_action:
 		Action.IDLE:
-			if noise_source != null:
+			if is_instance_valid(noise_source):
 				current_action = Action.LOOK_AT_NOISE
 		Action.LOOK_AT_NOISE:
-			var noise_position := (noise_source as Node2D).global_position
-			rotation = lerp_angle(rotation, rotation + get_angle_to(noise_source.global_position), 4.0*delta)
-			if abs(get_angle_to(noise_position)) < deg2rad(1.0):
-				if noise_source is Arrow:
-					current_action = Action.LOOK_AT_SOURCE_OF_NOISE
-				else:
-					current_action = Action.IDLE
-					noise_source = null
-			pass
-		Action.LOOK_AT_SOURCE_OF_NOISE:
-			var arrow = (noise_source as Arrow)
-			var dir = Vector2.RIGHT.rotated(arrow.global_rotation)
-			var look_at_position = arrow.global_position - dir * 10000
-			rotation = lerp_angle(rotation, rotation + get_angle_to(look_at_position), 4.0*delta)
-			if abs(get_angle_to(look_at_position)) < deg2rad(1.0):
+			var finish = !is_instance_valid(noise_source)
+			if !finish:
+				var noise_position := (noise_source as Node2D).global_position
+				rotation = lerp_angle(rotation, rotation + get_angle_to(noise_source.global_position), 4.0*delta)
+				if abs(get_angle_to(noise_position)) < deg2rad(1.0):
+					if noise_source is Arrow:
+						current_action = Action.LOOK_AT_SOURCE_OF_NOISE
+					else:
+						current_action = Action.IDLE
+						noise_source = null
+			if finish:
 				current_action = Action.IDLE
 				noise_source = null
-			pass
+		Action.LOOK_AT_SOURCE_OF_NOISE:
+			var finish = !is_instance_valid(noise_source)
+			if !finish:
+				var arrow = (noise_source as Arrow)
+				var dir = Vector2.RIGHT.rotated(arrow.global_rotation)
+				var look_at_position = arrow.global_position - dir * 10000
+				rotation = lerp_angle(rotation, rotation + get_angle_to(look_at_position), 4.0*delta)
+				finish = abs(get_angle_to(look_at_position)) < deg2rad(1.0)
+			if finish:
+				current_action = Action.IDLE
+				noise_source = null
 		Action.WALK_TOWARDS:
 			pass
 		Action.AIM_AND_SHOOT:
