@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://levels/target.gd" type="Script" id=1]
 [ext_resource path="res://asset/texture/target.png" type="Texture" id=2]
+[ext_resource path="res://projectiles/hurtbox.gd" type="Script" id=3]
+[ext_resource path="res://projectiles/reparent_and_play.gd" type="Script" id=4]
+[ext_resource path="res://asset/sound/target_break.wav" type="AudioStream" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
@@ -15,8 +18,15 @@ texture = ExtResource( 2 )
 [node name="hurtbox" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 8
+script = ExtResource( 3 )
+tank_projectiles = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
 shape = SubResource( 1 )
 
+[node name="hit_audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+script = ExtResource( 4 )
+
+[connection signal="hit" from="." to="hit_audio" method="play"]
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]

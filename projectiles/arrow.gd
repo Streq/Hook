@@ -15,6 +15,7 @@ var hit_body = null
 var velocity := Vector2.ZERO
 var caster = null
 var hurt_caster = false
+var landed = false
 
 onready var hitbox = $hitbox
 onready var player_area = $player_area
@@ -54,13 +55,18 @@ func _on_terrain_area_body_entered(body):
 	if body.pierceable:
 		velocity = Vector2.ZERO
 		hit_body = body
-		player_area.set_deferred("monitoring", false)
-		hitbox.set_deferred("monitoring", false)
-		hitbox.set_deferred("monitorable", false)
-		terrain_area.set_deferred("monitoring", false)
-		terrain_area.set_deferred("monitorable", false)
-		get_parent().call_deferred("remove_child", self)
-		body.call_deferred("add_child", self)
+		landed = true
+
+		yield(get_tree(),"idle_frame")
+		player_area.monitoring = false
+		hitbox.monitoring = false
+		hitbox.monitorable = false
+		hitbox.get_node("CollisionShape2D").disabled = true
+		terrain_area.monitoring = false
+		terrain_area.monitorable = false
+		terrain_area.get_node("CollisionShape2D").disabled = true
+		get_parent().remove_child(self)
+		body.add_child(self)
 		emit_signal("landed")
 
 

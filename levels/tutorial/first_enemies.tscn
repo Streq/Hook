@@ -73,13 +73,6 @@ tile_data = PoolIntArray( 393197, 0, 0, 458733, 0, 0, 524269, 0, 0, 589805, 0, 0
 modulate = Color( 0.788235, 0.470588, 0.470588, 1 )
 tile_data = PoolIntArray( -196613, 0, 0, -131077, 0, 0, -65541, 0, 0, -5, 0, 0 )
 
-[node name="turret" parent="." instance=ExtResource( 11 )]
-position = Vector2( -208, -208 )
-rotation = 4.71239
-
-[node name="controller" parent="turret" index="1"]
-rotation = 3.14159
-
 [node name="turret2" parent="." instance=ExtResource( 11 )]
 position = Vector2( -272, 240 )
 rotation = 1.5708
@@ -97,5 +90,4 @@ rotation = -1.5708
 
 [editable path="killzone"]
 [editable path="goalzone"]
-[editable path="turret"]
 [editable path="turret2"]

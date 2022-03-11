@@ -14,6 +14,7 @@ export var gravity := Vector2(0, 500.0)
 export var team := 0
 onready var input = $input
 
+var air = false
 var rope = null
 
 const sqrt_2_inv =  1.0/sqrt(2.0)
@@ -37,6 +38,9 @@ func get_input_dir() -> Vector2:
 
 func _move(dir, delta):
 	if is_on_floor():
+		if air:
+			$jump_sound.play()
+			air = false
 		if dir.x:
 			velocity.x = lerp(velocity.x, dir.x*speed, run_lerp * delta)
 			$AnimationPlayer.play("run")
@@ -44,6 +48,7 @@ func _move(dir, delta):
 			velocity.x = lerp(velocity.x, 0, idle_lerp * delta)
 			$AnimationPlayer.play("idle")
 	else:
+		air = true
 		$AnimationPlayer.play("air")
 
 
@@ -51,12 +56,13 @@ func _jump(dir):
 	if is_on_floor():
 		if $floor_check.get_overlapping_bodies().size()>0:
 			velocity.y -= jump_speed
+			$jump_sound.play()
 		else:
 			velocity.y -= jump_speed*0.75
 	elif is_on_wall() and dir.x:
 		velocity.y -= jump_speed * sqrt_2_inv
 		velocity.x -= dir.x*jump_speed * sqrt_2_inv
-		
+		$jump_sound.play()
 		
 func die():
 	emit_signal("dead")
