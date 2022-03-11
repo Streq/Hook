@@ -40,6 +40,7 @@ func _physics_process(delta):
 	if collision:
 		velocity = velocity.bounce(collision.normal)*0.9
 		emit_signal("bounced")
+		
 		hurt_caster = true
 	
 	if !hit_body:
@@ -72,7 +73,10 @@ func _on_player_area_body_entered(body):
 
 
 func _on_hitbox_area_entered(area):
-	if area.owner != caster and !hurt_caster:
+	if (area.owner != caster or hurt_caster) and area.tank_projectiles:
 		emit_signal("hit")
 		queue_free()
-#		area.owner.velocity += velocity*0.2
+		
+func _on_hitbox_area_exited(area):
+	if area.owner == caster:
+		 hurt_caster = true

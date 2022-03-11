@@ -14,6 +14,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://projectiles/arrow.gd"
 }, {
+"base": "Area2D",
+"class": "Hitbox",
+"language": "GDScript",
+"path": "res://projectiles/hitbox.gd"
+}, {
+"base": "Area2D",
+"class": "Hurtbox",
+"language": "GDScript",
+"path": "res://projectiles/hurtbox.gd"
+}, {
 "base": "Node",
 "class": "InputState",
 "language": "GDScript",
@@ -29,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://global/render_utils.gd"
 }, {
+"base": "Hurtbox",
+"class": "ShieldBox",
+"language": "GDScript",
+"path": "res://baddies/shieldbox.gd"
+}, {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
@@ -41,9 +56,12 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Arrow": "",
+"Hitbox": "",
+"Hurtbox": "",
 "InputState": "",
 "InputUtils": "",
 "RenderUtils": "",
+"ShieldBox": "",
 "State": "",
 "StateMachine": ""
 }

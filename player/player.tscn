@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://asset/texture/ninja.png" type="Texture" id=2]
+[ext_resource path="res://projectiles/hurtbox.gd" type="Script" id=3]
 [ext_resource path="res://player/ledge_grab.tscn" type="PackedScene" id=5]
 [ext_resource path="res://player/shooter.tscn" type="PackedScene" id=6]
 [ext_resource path="res://player/input_state.gd" type="Script" id=7]
@@ -73,6 +74,7 @@ script = ExtResource( 1 )
 [node name="hurtbox" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 8
+script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
 shape = SubResource( 3 )

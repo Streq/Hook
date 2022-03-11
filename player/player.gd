@@ -63,8 +63,8 @@ func die():
 	queue_free()
 
 
-func _on_hurtbox_area_entered(area):
-	if area.owner.caster != self:
+func _on_hurtbox_area_entered(area:Hitbox):
+	if !area.is_whitelisted(self):
 		die()
 		
 func retrieve_rope(rope):

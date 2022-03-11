@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://terrain/ground/ground.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
@@ -8,87 +8,6 @@
 [ext_resource path="res://baddies/grunt.tscn" type="PackedScene" id=6]
 [ext_resource path="res://restart_trigger.gd" type="Script" id=7]
 [ext_resource path="res://baddies/elite_grunt.tscn" type="PackedScene" id=8]
-
-[sub_resource type="Animation" id=1]
-resource_name = "air"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 3 ]
-}
-
-[sub_resource type="Animation" id=2]
-resource_name = "idle"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
-
-[sub_resource type="Animation" id=3]
-resource_name = "run"
-length = 0.4
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 1, 2 ]
-}
-
-[sub_resource type="Animation" id=4]
-resource_name = "RESET"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("exclamation:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-
-[sub_resource type="Animation" id=5]
-resource_name = "heard_noise"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("exclamation:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
 
 [node name="Node2D" type="Node2D"]
 
@@ -134,17 +53,11 @@ tile_data = PoolIntArray( 1376229, 0, 0, 1376230, 0, 0, 1376231, 0, 0, 1376232, 
 [node name="elite_grunt2" parent="." instance=ExtResource( 8 )]
 position = Vector2( -224, -3256 )
 
+[node name="hurtbox" parent="elite_grunt2" index="3"]
+script = null
+
 [node name="elite_grunt3" parent="." instance=ExtResource( 8 )]
 position = Vector2( 360, 248 )
-
-[node name="AnimationPlayer" parent="elite_grunt3" index="5"]
-anims/air = SubResource( 1 )
-anims/idle = SubResource( 2 )
-anims/run = SubResource( 3 )
-
-[node name="sign_animation" parent="elite_grunt3" index="8"]
-anims/RESET = SubResource( 4 )
-anims/heard_noise = SubResource( 5 )
 
 [node name="grunt4" parent="." instance=ExtResource( 6 )]
 position = Vector2( 336, -1264 )
@@ -165,5 +78,3 @@ position = Vector2( 72, -2704 )
 [editable path="killzone"]
 [editable path="elite_grunt2"]
 [editable path="elite_grunt2/controller"]
-[editable path="elite_grunt3"]
-[editable path="elite_grunt3/controller"]

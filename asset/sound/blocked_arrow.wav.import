@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/blocked_arrow.wav-86e581030938b4b37fd0ca46f5eb4249.sample"
+
+[deps]
+
+source_file="res://asset/sound/blocked_arrow.wav"
+dest_files=[ "res://.import/blocked_arrow.wav-86e581030938b4b37fd0ca46f5eb4249.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -42,7 +42,7 @@ func _physics_process(delta):
 		if input.is_action_just_released("shoot_hook"):
 			retrieve_rope(rope)
 	elif shoot:
-		var arrow = ARROW.instance() if !shoot_hook else HOOK_ARROW.instance()
+		var arrow : Arrow = ARROW.instance() if !shoot_hook else HOOK_ARROW.instance()
 		var shooter = get_parent()
 		arrow.init(shooter, aim_angle)
 		
