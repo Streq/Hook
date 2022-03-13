@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://global/input_utils.gd"
 }, {
+"base": "Resource",
+"class": "LevelDefinition",
+"language": "GDScript",
+"path": "res://levels/level_definition.gd"
+}, {
 "base": "Reference",
 "class": "RenderUtils",
 "language": "GDScript",
@@ -60,6 +65,7 @@ _global_script_class_icons={
 "Hurtbox": "",
 "InputState": "",
 "InputUtils": "",
+"LevelDefinition": "",
 "RenderUtils": "",
 "ShieldBox": "",
 "State": "",
@@ -69,13 +75,28 @@ _global_script_class_icons={
 [application]
 
 config/name="Hook"
-run/main_scene="res://levels/tutorial/how_to_jump.tscn"
+run/main_scene="res://menu/main_menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Global="*res://global/global.gd"
 Levels="*res://global/levels.tscn"
+Pause="*res://global/pause.tscn"
+
+[display]
+
+window/size/width=1280
+window/size/height=720
+
+[global]
+
+theme=false
+
+[gui]
+
+theme/custom="res://asset/theme/main_theme.tres"
+theme/custom_font="res://asset/font/proggy_16.tres"
 
 [input]
 

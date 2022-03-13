@@ -54,7 +54,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=9]
 resource_name = "land"
 tracks/0/type = "method"
-tracks/0/path = NodePath("jump_sound")
+tracks/0/path = NodePath("step_sound")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -84,23 +84,22 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 1, 2 ]
 }
-tracks/1/type = "audio"
-tracks/1/path = NodePath("AudioStreamPlayer2D")
+tracks/1/type = "method"
+tracks/1/path = NodePath("step_sound")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 4 )
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
 }, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 4 )
-} ],
-"times": PoolRealArray( 0, 0.2 )
+"args": [ 0.0 ],
+"method": "play"
+} ]
 }
 
 [node name="player" type="KinematicBody2D"]
@@ -121,7 +120,7 @@ script = ExtResource( 7 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 hframes = 4
-frame = 3
+frame = 1
 
 [node name="rotate_to_aim" parent="." instance=ExtResource( 9 )]
 
@@ -171,10 +170,7 @@ anims/idle = SubResource( 5 )
 anims/land = SubResource( 9 )
 anims/run = SubResource( 6 )
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 4 )
-
-[node name="jump_sound" type="AudioStreamPlayer2D" parent="."]
+[node name="step_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
 
 [connection signal="ready" from="." to="shooter/aim_assist" method="_on_shooter_ready"]

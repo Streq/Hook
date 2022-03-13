@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://levels/level_definition.gd" type="Script" id=1]
+[ext_resource path="res://levels/tutorial/shift/how_to_shift.tscn" type="PackedScene" id=2]
+
+[resource]
+script = ExtResource( 1 )
+map = ExtResource( 2 )
+title = "reel in super fast"
+description = "learn how to reel the hook thingy super fast for maximum pleasure"

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://asset/font/proggy_32.tres" type="DynamicFont" id=1]
+
+[node name="button" type="Button"]
+margin_left = 542.0
+margin_top = 56.0
+margin_right = 610.0
+margin_bottom = 88.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 1 )
+text = "play"
