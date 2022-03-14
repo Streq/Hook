@@ -35,3 +35,6 @@ func _input(event):
 		if event.is_action(action):
 			input.set_action_pressed(action, event.is_pressed())
 			return
+	if event.is_action_pressed("ui_cancel"):
+		Pause.toggle_pause()
+		

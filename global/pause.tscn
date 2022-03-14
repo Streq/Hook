@@ -7,10 +7,10 @@
 
 [node name="pause_menu" instance=ExtResource( 2 )]
 pause_mode = 2
+script = ExtResource( 1 )
 
 [node name="menu" parent="." index="0"]
 visible = false
-script = ExtResource( 1 )
 
 [node name="Label" parent="menu/MarginContainer/VBoxContainer" index="0"]
 text = "Pause"
@@ -29,6 +29,6 @@ text = "exit to main menu"
 script = ExtResource( 4 )
 to = "res://menu/main_menu.tscn"
 
-[connection signal="pressed" from="menu/MarginContainer/VBoxContainer/button_continue" to="menu" method="toggle_pause"]
-[connection signal="pressed" from="menu/MarginContainer/VBoxContainer/button_exit" to="menu" method="toggle_pause"]
+[connection signal="pressed" from="menu/MarginContainer/VBoxContainer/button_continue" to="." method="toggle_pause"]
+[connection signal="pressed" from="menu/MarginContainer/VBoxContainer/button_exit" to="." method="toggle_pause"]
 [connection signal="pressed" from="menu/MarginContainer/VBoxContainer/button_exit" to="menu/MarginContainer/VBoxContainer/button_exit" method="trigger"]

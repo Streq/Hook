@@ -7,8 +7,11 @@ var current_level = 0
 var highest_available = 0
 
 func next_level():
-	highest_available = max(current_level + 1, highest_available)
-	to_level(current_level + 1)
+	var next = current_level + 1
+	if highest_available < next:
+		highest_available = next
+		Global.save_game()
+	to_level(next)
 
 
 func to_level(id):
