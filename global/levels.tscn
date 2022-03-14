@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://levels/tutorial/jump/jump.tres" type="Resource" id=1]
 [ext_resource path="res://global/levels.gd" type="Script" id=2]
@@ -9,7 +9,10 @@
 [ext_resource path="res://levels/tutorial/enemies/enemies.tres" type="Resource" id=7]
 [ext_resource path="res://levels/tutorial/reel/reel.tres" type="Resource" id=8]
 [ext_resource path="res://levels/tutorial/swing/swing.tres" type="Resource" id=9]
+[ext_resource path="res://levels/medium/0/0.tres" type="Resource" id=10]
+[ext_resource path="res://menu/level_select_menu.tscn" type="PackedScene" id=11]
 
 [node name="Levels" type="Node"]
 script = ExtResource( 2 )
-levels = [ ExtResource( 1 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 4 ), ExtResource( 7 ) ]
+levels = [ ExtResource( 1 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 10 ) ]
+level_select = ExtResource( 11 )

@@ -93,4 +93,8 @@ func _on_shoot_cooldown_timeout():
 
 
 func _on_noise_detection_area_entered(area):
-	noise_source = area.owner
+	if area.owner is Arrow:
+		var a = area.owner as Arrow
+		if a.caster != owner:
+			noise_source = area.owner
+		
