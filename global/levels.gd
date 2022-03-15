@@ -2,7 +2,7 @@ extends Node
 
 export (Array, Resource) var levels : Array
 export (PackedScene) var level_select
-
+export (String, DIR) var ssasa
 var current_level = 0
 var highest_available = 0
 

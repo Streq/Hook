@@ -39,8 +39,11 @@ func _physics_process(delta):
 	var collision := move_and_collide(velocity*delta)
 	
 	if collision:
-		velocity = velocity.bounce(collision.normal)*0.9
-		emit_signal("bounced")
+		velocity = velocity.bounce(collision.normal)*0.9 
+		if velocity.length_squared() > 50.0:
+			emit_signal("bounced")
+		else:
+			queue_free()
 		
 		hurt_caster = true
 	
