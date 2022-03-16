@@ -8,6 +8,9 @@ radius = 2000.0
 
 [node name="elite_grunt" instance=ExtResource( 2 )]
 
+[node name="Sprite" parent="." index="1"]
+self_modulate = Color( 1, 0, 0, 1 )
+
 [node name="shieldbox" parent="rotate_to_aim" index="0" instance=ExtResource( 3 )]
 
 [node name="controller" parent="." index="10"]

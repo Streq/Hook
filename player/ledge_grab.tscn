@@ -29,9 +29,5 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ledge_check/wall_check"]
 shape = SubResource( 4 )
 
-[connection signal="ledge_entered" from="ledge_check" to="." method="set_deferred" binds= [ "disabled", false ]]
-[connection signal="ledge_exited" from="ledge_check" to="." method="set_deferred" binds= [ "disabled", true ]]
-[connection signal="body_entered" from="ledge_check/gap_check" to="ledge_check" method="_on_gap_check_body_entered"]
-[connection signal="body_exited" from="ledge_check/gap_check" to="ledge_check" method="_on_gap_check_body_exited"]
-[connection signal="body_entered" from="ledge_check/wall_check" to="ledge_check" method="_on_wall_check_body_entered"]
-[connection signal="body_exited" from="ledge_check/wall_check" to="ledge_check" method="_on_wall_check_body_exited"]
+[connection signal="ledge_entered" from="ledge_check" to="." method="_on_ledge_check_ledge_entered"]
+[connection signal="ledge_exited" from="ledge_check" to="." method="_on_ledge_check_ledge_exited"]
