@@ -1,5 +1,5 @@
 extends KinematicBody2D
-
+class_name Player
 signal dead()
 signal has_rope()
 signal no_rope()
@@ -13,6 +13,7 @@ export var idle_lerp := 8.0
 export var gravity := Vector2(0, 500.0)
 export var team := 0
 onready var input = $input
+onready var sprite := $Sprite
 onready var spawn := global_position
 var air = false
 var rope = null

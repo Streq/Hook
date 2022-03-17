@@ -18,6 +18,7 @@ func _ready():
 func _physics_process(delta):
 	current_state.update(delta)
 	
+	
 func _input(event):
 	current_state.input(event)
 	
