@@ -1,5 +1,5 @@
 extends Node2D
-
+class_name LedgeGrab
 export (NodePath) onready var input = get_node(input) as InputState
 var can_grab = false
 

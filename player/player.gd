@@ -21,15 +21,7 @@ var rope = null
 const sqrt_2_inv =  1.0/sqrt(2.0)
 
 func _physics_process(delta):
-	var dir : Vector2 = get_input_dir()
-	if dir.x:
-		$Sprite.flip_h = dir.x < 0.0
-	velocity = move_and_slide(velocity+dir*0.01, Vector2.UP)
-	velocity += gravity*delta
-	
-	_move(dir, delta)
-	if get_jump():
-		_jump(dir)
+	pass
 
 func get_jump():
 	return input.is_action_just_pressed("jump")

@@ -10,6 +10,10 @@ radius = 2000.0
 
 [node name="Sprite" parent="." index="1"]
 self_modulate = Color( 1, 0, 0, 1 )
+frame = 0
+
+[node name="AnimationPlayer" parent="." index="5"]
+autoplay = "idle"
 
 [node name="shieldbox" parent="rotate_to_aim" index="0" instance=ExtResource( 3 )]
 
