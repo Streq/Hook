@@ -19,8 +19,7 @@ func update(delta:float):
 	p.animation.play("idle")
 	
 	
-	if ledge_dir:
-		p.sprite.flip_h = right_ledge.disabled
+	p.facing_dir = dir.x if dir.x else ledge_dir
 	
 	var fix_dir = Vector2(50.0*ledge_dir, 0)
 	
@@ -32,7 +31,10 @@ func update(delta:float):
 		_finish("idle")
 	
 	if p.get_jump():
-		_jump(p, dir)
+		if dir.x != ledge_dir or !ledge_dir:
+			_jump(p, dir)
+		else:
+			_finish("climb_ledge")
 	
 	
 	

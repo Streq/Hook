@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://asset/texture/ninja.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://player/hand.gd" type="Script" id=10]
 [ext_resource path="res://asset/texture/hand.png" type="Texture" id=11]
 [ext_resource path="res://player/aim_assist.gd" type="Script" id=12]
+[ext_resource path="res://player/state/climb_ledge.gd" type="Script" id=13]
 [ext_resource path="res://util/state/state_machine.gd" type="Script" id=14]
 [ext_resource path="res://player/state/idle.gd" type="Script" id=15]
 [ext_resource path="res://player/state/ledge.gd" type="Script" id=16]
@@ -36,6 +37,21 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 3 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "climb"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -123,7 +139,7 @@ script = ExtResource( 7 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 hframes = 4
-frame = 1
+frame = 3
 
 [node name="rotate_to_aim" parent="." instance=ExtResource( 9 )]
 
@@ -171,6 +187,7 @@ shape = SubResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/air = SubResource( 7 )
+anims/climb = SubResource( 10 )
 anims/idle = SubResource( 5 )
 anims/land = SubResource( 9 )
 anims/run = SubResource( 6 )
@@ -187,6 +204,11 @@ script = ExtResource( 15 )
 
 [node name="ledge" type="Node" parent="state"]
 script = ExtResource( 16 )
+
+[node name="climb_ledge" type="Node" parent="state"]
+script = ExtResource( 13 )
+
+[node name="Tween" type="Tween" parent="state/climb_ledge"]
 
 [connection signal="ready" from="." to="shooter/aim_assist" method="_on_shooter_ready"]
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]

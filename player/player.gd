@@ -17,6 +17,7 @@ onready var sprite := $Sprite
 onready var animation : AnimationPlayer = $AnimationPlayer
 var air = false
 var rope = null
+var facing_dir := 1.0 setget set_facing_dir
 
 const sqrt_2_inv =  1.0/sqrt(2.0)
 
@@ -75,3 +76,10 @@ func retrieve_rope(rope):
 		arrow.get_node("CollisionShape2D").set_deferred("disabled", true)
 		arrow.get_node("player_area").set_deferred("monitoring", true)
 		arrow.get_node("terrain_area").set_deferred("monitoring", false)
+
+func set_facing_dir(dir):
+	var s = sign(dir)
+	if s:
+		facing_dir = s
+		sprite.flip_h = s < 0
+		
