@@ -170,6 +170,7 @@ script = ExtResource( 10 )
 [node name="left_ledge_grab" parent="." instance=ExtResource( 5 )]
 process_priority = -3
 position = Vector2( -13, -20 )
+scale = Vector2( -1, 1 )
 input = NodePath("../input")
 
 [node name="hand" type="Sprite" parent="left_ledge_grab"]

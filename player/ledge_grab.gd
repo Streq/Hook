@@ -2,9 +2,10 @@ extends Node2D
 class_name LedgeGrab
 export (NodePath) onready var input = get_node(input) as InputState
 var can_grab = false
-
+var can_climb = false
 func _physics_process(delta):
 	can_grab = input.dir.y <= 0.0 and owner.velocity.y >= 0.0
+	can_climb = $climb_check.get_overlapping_bodies().size() == 0
 	if !can_grab:
 		set_deferred("disabled", true)
 

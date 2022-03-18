@@ -15,6 +15,7 @@ func update(delta:float):
 	var dir : Vector2 = p.get_input_dir()
 	
 	var ledge_dir = float(!right_ledge.disabled) - float(!left_ledge.disabled)
+	var ledge = left_ledge if ledge_dir<0 else right_ledge
 	
 	p.animation.play("idle")
 	
@@ -27,13 +28,13 @@ func update(delta:float):
 	p.velocity += p.gravity*delta
 	
 	
-	if right_ledge.disabled and left_ledge.disabled:
+	if right_ledge.disabled and left_ledge.disabled or p.feet_on_the_ground() and dir.x != ledge_dir:
 		_finish("idle")
 	
 	if p.get_jump():
 		if dir.x != ledge_dir or !ledge_dir:
 			_jump(p, dir)
-		else:
+		elif ledge.can_climb:
 			_finish("climb_ledge")
 	
 	

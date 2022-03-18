@@ -20,9 +20,11 @@ func update(delta:float):
 	p._move(dir, delta)
 	if p.get_jump():
 		p._jump(dir)
-
+	
 	if !right_ledge.disabled or !left_ledge.disabled:
-		_finish("ledge")
+		var ledge_dir = float(!right_ledge.disabled) - float(!left_ledge.disabled)
+		if !p.feet_on_the_ground() or dir.x == ledge_dir:
+			_finish("ledge")
 		
 
 	pass

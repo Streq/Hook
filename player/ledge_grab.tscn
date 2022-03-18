@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://ledge_check.gd" type="Script" id=1]
 [ext_resource path="res://player/ledge_grab.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 3, 4 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 12, 16 )
 
 [node name="ledge_grab" type="CollisionShape2D"]
 shape = SubResource( 4 )
@@ -28,6 +31,14 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ledge_check/wall_check"]
 shape = SubResource( 4 )
+
+[node name="climb_check" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="climb_check"]
+position = Vector2( 11, -12 )
+shape = SubResource( 5 )
 
 [connection signal="ledge_entered" from="ledge_check" to="." method="_on_ledge_check_ledge_entered"]
 [connection signal="ledge_exited" from="ledge_check" to="." method="_on_ledge_check_ledge_exited"]

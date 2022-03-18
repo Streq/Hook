@@ -15,6 +15,7 @@ export var team := 0
 onready var input = $input
 onready var sprite := $Sprite
 onready var animation : AnimationPlayer = $AnimationPlayer
+onready var floor_check := $floor_check
 var air = false
 var rope = null
 var facing_dir := 1.0 setget set_facing_dir
@@ -45,10 +46,12 @@ func _move(dir, delta):
 		air = true
 		animation.play("air")
 
+func feet_on_the_ground():
+	return floor_check.get_overlapping_bodies().size()>0
 
 func _jump(dir):
 	if is_on_floor():
-		if $floor_check.get_overlapping_bodies().size()>0:
+		if feet_on_the_ground():
 			velocity.y -= jump_speed
 			$step_sound.play()
 		else:
