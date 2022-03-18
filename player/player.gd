@@ -14,7 +14,7 @@ export var gravity := Vector2(0, 500.0)
 export var team := 0
 onready var input = $input
 onready var sprite := $Sprite
-onready var spawn := global_position
+onready var animation : AnimationPlayer = $AnimationPlayer
 var air = false
 var rope = null
 
@@ -36,13 +36,13 @@ func _move(dir, delta):
 			air = false
 		if dir.x:
 			velocity.x = lerp(velocity.x, dir.x*speed, run_lerp * delta)
-			$AnimationPlayer.play("run")
+			animation.play("run")
 		else:
 			velocity.x = lerp(velocity.x, 0, idle_lerp * delta)
-			$AnimationPlayer.play("idle")
+			animation.play("idle")
 	else:
 		air = true
-		$AnimationPlayer.play("air")
+		animation.play("air")
 
 
 func _jump(dir):

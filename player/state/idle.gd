@@ -5,8 +5,8 @@ var right_ledge
 var left_ledge
 
 func enter(args):
-	right_ledge = owner.get_node("ledge_grab2")
-	left_ledge = owner.get_node("ledge_grab")
+	right_ledge = owner.get_node("right_ledge_grab")
+	left_ledge = owner.get_node("left_ledge_grab")
 	
 func exit():
 	pass

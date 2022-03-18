@@ -141,20 +141,22 @@ shape = SubResource( 3 )
 [node name="aim_assist" type="Node2D" parent="shooter"]
 script = ExtResource( 12 )
 
-[node name="ledge_grab" parent="." instance=ExtResource( 5 )]
+[node name="right_ledge_grab" parent="." instance=ExtResource( 5 )]
+process_priority = -3
 position = Vector2( 13, -20 )
 input = NodePath("../input")
 
-[node name="hand" type="Sprite" parent="ledge_grab"]
+[node name="hand" type="Sprite" parent="right_ledge_grab"]
 visible = false
 texture = ExtResource( 11 )
 script = ExtResource( 10 )
 
-[node name="ledge_grab2" parent="." instance=ExtResource( 5 )]
+[node name="left_ledge_grab" parent="." instance=ExtResource( 5 )]
+process_priority = -3
 position = Vector2( -13, -20 )
 input = NodePath("../input")
 
-[node name="hand" type="Sprite" parent="ledge_grab2"]
+[node name="hand" type="Sprite" parent="left_ledge_grab"]
 visible = false
 texture = ExtResource( 11 )
 script = ExtResource( 10 )
