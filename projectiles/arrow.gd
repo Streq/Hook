@@ -68,8 +68,10 @@ func _on_terrain_area_body_entered(body):
 		terrain_area.monitoring = false
 		terrain_area.monitorable = false
 		terrain_area.get_node("CollisionShape2D").disabled = true
+		var t = global_transform
 		get_parent().remove_child(self)
 		body.add_child(self)
+		global_transform = t
 		emit_signal("landed")
 
 
