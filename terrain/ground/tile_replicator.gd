@@ -8,5 +8,7 @@ func _ready():
 		var c = child as TileMap
 		c.self_modulate = original.self_modulate
 		child.set("tile_data", tile_data)
+	#hide original
 	original.self_modulate.a = 0
+	#force self_modulate update
 	original.set("tile_data", tile_data)

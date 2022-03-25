@@ -33,15 +33,12 @@ script = ExtResource( 2 )
 [node name="controller" parent="player" instance=ExtResource( 4 )]
 
 [node name="Label" type="Label" parent="."]
-margin_left = 8.0
-margin_top = 328.0
-margin_right = 259.0
-margin_bottom = 461.0
+margin_left = 48.0
+margin_top = 376.0
+margin_right = 299.0
+margin_bottom = 509.0
 rect_scale = Vector2( 2, 2 )
 text = "left click - crossbow"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="goalzone" parent="." instance=ExtResource( 9 )]
 

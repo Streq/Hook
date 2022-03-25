@@ -31,17 +31,14 @@ current = true
 script = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="."]
-margin_left = -224.0
-margin_top = 336.0
-margin_right = 27.0
-margin_bottom = 469.0
+margin_left = -248.0
+margin_top = 368.0
+margin_right = 3.0
+margin_bottom = 501.0
 rect_scale = Vector2( 2, 2 )
 text = "W - jump
 A, D - move
 Mouse - look around"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="goalzone" parent="." instance=ExtResource( 7 )]
 

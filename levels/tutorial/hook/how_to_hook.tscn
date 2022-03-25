@@ -28,10 +28,10 @@ script = ExtResource( 2 )
 [node name="controller" parent="player" instance=ExtResource( 4 )]
 
 [node name="Label" type="Label" parent="."]
-margin_left = -376.0
-margin_top = 400.0
-margin_right = -125.0
-margin_bottom = 533.0
+margin_left = -472.0
+margin_top = 432.0
+margin_right = -221.0
+margin_bottom = 565.0
 rect_scale = Vector2( 2, 2 )
 text = "right click - grappling hook"
 
