@@ -114,6 +114,7 @@ Global="*res://global/global.gd"
 Levels="*res://global/levels.tscn"
 Pause="*res://global/pause.tscn"
 Math="*res://global/Math.gd"
+Node2DUtils="*res://global/node2d_utils.gd"
 
 [display]
 

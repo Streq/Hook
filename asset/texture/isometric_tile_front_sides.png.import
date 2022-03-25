@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/isometric_tile.png-b8b9e274ec62e6697c437f04c8663202.stex"
+path="res://.import/isometric_tile_front_sides.png-15ccb6ea8decafa73d5129a3ca9de868.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/texture/isometric_tile.png"
-dest_files=[ "res://.import/isometric_tile.png-b8b9e274ec62e6697c437f04c8663202.stex" ]
+source_file="res://asset/texture/isometric_tile_front_sides.png"
+dest_files=[ "res://.import/isometric_tile_front_sides.png-15ccb6ea8decafa73d5129a3ca9de868.stex" ]
 
 [params]
 
