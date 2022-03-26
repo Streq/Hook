@@ -7,7 +7,8 @@ func _ready():
 	for child in get_children():
 		var c = child as TileMap
 		c.self_modulate = original.self_modulate
-		child.set("tile_data", tile_data)
+		c.set("tile_data", tile_data)
+		c.update_bitmask_region()
 	#hide original
 	original.self_modulate.a = 0
 	#force self_modulate update

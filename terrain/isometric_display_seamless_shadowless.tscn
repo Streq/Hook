@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://terrain/tiled_shadowed.tres" type="TileSet" id=1]
+[ext_resource path="res://terrain/tiled_seamless.tres" type="TileSet" id=1]
 [ext_resource path="res://terrain/ground/tile_replicator.gd" type="Script" id=2]
 [ext_resource path="res://asset/texture/isometric_tile_front_sides.png" type="Texture" id=4]
 [ext_resource path="res://terrain/ground/ground.tres" type="TileSet" id=5]
@@ -57,7 +57,7 @@
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="TileSet" id=25]
+[sub_resource type="TileSet" id=29]
 0/name = "isometric_tile_front.png 0"
 0/texture = ExtResource( 4 )
 0/tex_offset = Vector2( 0, 0 )
@@ -82,7 +82,7 @@
 0/shapes = [  ]
 0/z_index = 0
 
-[node name="isometric_display" type="Node2D"]
+[node name="isometric_display_seamless_shadowless" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="back" type="TileMap" parent="."]
@@ -121,7 +121,7 @@ format = 1
 [node name="front_" type="TileMap" parent="."]
 rotation = -2.53518e-06
 z_index = 1
-tile_set = SubResource( 25 )
+tile_set = SubResource( 29 )
 cell_size = Vector2( 32, 32 )
 cell_y_sort = true
 centered_textures = true
