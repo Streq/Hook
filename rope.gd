@@ -37,11 +37,12 @@ func _physics_process(delta):
 
 
 func _draw():
-	$display.global_position = (pointA.global_position + pointB.global_position) / 2
-	var dist = (pointA.global_position - pointB.global_position)
-	$display.rotation = (pointA.global_position - pointB.global_position).angle()
-	$display.scale.x = dist.length()
-	if dist.length_squared() > length*length:
-		$display.modulate = Color.red
-	else:
-		$display.modulate = Color.green
+#	$display.global_position = (pointA.global_position + pointB.global_position) / 2
+#	var dist = (pointA.global_position - pointB.global_position)
+#	$display.rotation = (pointA.global_position - pointB.global_position).angle()
+#	$display.scale.x = dist.length()
+	draw_line(to_local(pointA.global_position), to_local(pointB.global_position), Color.white, 1.0, false)
+#	if dist.length_squared() > length*length:
+#		$display.modulate = Color.red
+#	else:
+#		$display.modulate = Color.green
