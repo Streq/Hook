@@ -6,13 +6,12 @@
 [ext_resource path="res://asset/texture/door_front.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 16 )
+extents = Vector2( 8, 18 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 1, 16 )
+extents = Vector2( 16, 16 )
 
 [node name="door" type="Area2D"]
-position = Vector2( 464, 304 )
 collision_layer = 0
 script = ExtResource( 1 )
 
@@ -33,7 +32,6 @@ collision_mask = 0
 script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -16, 0 )
 shape = SubResource( 2 )
 
 [connection signal="body_entered" from="." to="." method="_on_goalzone_body_entered"]

@@ -29,8 +29,7 @@ func _physics_process(delta):
 	#shoot logic
 	var dir : Vector2 = input.dir
 	var shoot_hook = input.is_action_just_pressed("shoot_hook")
-	if shoot_hook:
-		with_rope = true
+	with_rope = shoot_hook
 	if shoot_hook or input.is_action_just_pressed("shoot_arrow"):
 		shoot = true
 		aim_angle = input.aim_angle
@@ -86,7 +85,7 @@ func add_rope_to_arrow(arrow):
 	get_parent().add_child(rope)
 
 func _on_arrow_with_rope_landed(arrow, rope):
-	if is_instance_valid(rope):
+	if is_instance_valid(rope) and input.is_action_pressed("shoot_hook"):
 		rope.length = min(max_rope_length, to_local(arrow.global_position).length())
 		pass
 		

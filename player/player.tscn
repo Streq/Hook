@@ -156,6 +156,7 @@ shape = SubResource( 3 )
 [node name="shooter" parent="." instance=ExtResource( 6 )]
 
 [node name="aim_assist" type="Node2D" parent="shooter"]
+z_index = 100
 script = ExtResource( 12 )
 
 [node name="right_ledge_grab" parent="." instance=ExtResource( 5 )]
