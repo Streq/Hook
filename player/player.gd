@@ -16,10 +16,12 @@ onready var input = $input
 onready var sprite := $Sprite
 onready var animation : AnimationPlayer = $AnimationPlayer
 onready var floor_check := $floor_check
+onready var shooter := $shooter
 var background_room_hole = []
 var air = false
 var rope = null
 var facing_dir := 1.0 setget set_facing_dir
+var can_interact = true
 
 const sqrt_2_inv =  1.0/sqrt(2.0)
 

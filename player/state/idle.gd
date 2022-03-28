@@ -16,7 +16,7 @@ func update(delta:float):
 	p.facing_dir = dir.x
 	p.velocity = p.move_and_slide(p.velocity+dir*0.01, Vector2.UP)
 	p.velocity += p.gravity*delta
-	
+	p.can_interact = !is_instance_valid(p.shooter.rope)
 	p._move(dir, delta)
 	if p.get_jump():
 		p._jump(dir)

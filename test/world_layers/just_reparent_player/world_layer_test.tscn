@@ -164,6 +164,8 @@ stretch = true
 
 [node name="Viewport" type="Viewport" parent="ViewportContainer2"]
 size = Vector2( 1024, 1024 )
+handle_input_locally = false
+render_target_update_mode = 3
 
 [node name="Node2D" type="Node2D" parent="ViewportContainer2/Viewport"]
 

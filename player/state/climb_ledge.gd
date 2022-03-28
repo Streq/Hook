@@ -16,6 +16,7 @@ func update(delta:float):
 	
 	done = true
 	var p = owner as Player
+	p.can_interact = false
 	var ledge_dir = float(!right_ledge.disabled) - float(!left_ledge.disabled)
 	var ledge = right_ledge if !right_ledge.disabled else left_ledge
 	
