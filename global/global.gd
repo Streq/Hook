@@ -1,6 +1,14 @@
 extends Node
 
+#offset between two layers so that it looks like 
+#terrain in one is right behind terrain in the other
+const ISOMETRIC_OFFSET := Vector2(14.0, -6.0)
+
+
 const SAVE_PATH = "user://savegame.save"
+
+
+
 
 func _ready():
 	load_game()
