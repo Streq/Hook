@@ -13,3 +13,6 @@ position = Vector2( 32, 0 )
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2( 16, 0 )
 disabled = true
+
+[node name="CollisionShape2D" parent="StaticBody2D" index="0"]
+position = Vector2( 32, 0 )

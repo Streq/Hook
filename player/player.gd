@@ -3,6 +3,8 @@ class_name Player
 signal dead()
 signal has_rope()
 signal no_rope()
+signal interact()
+
 
 var velocity := Vector2.ZERO
 export var speed := 250.0
@@ -26,6 +28,8 @@ var can_interact = true
 const sqrt_2_inv =  1.0/sqrt(2.0)
 
 func _physics_process(delta):
+	if can_interact and input.is_action_just_pressed("reel_out"):
+		emit_signal("interact")
 	pass
 
 func get_jump():
