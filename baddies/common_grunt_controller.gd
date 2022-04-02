@@ -9,6 +9,7 @@ var noise_source = null
 
 export var vision_angle := 90.0
 
+var arrows_to_ignore = []
 
 enum Action{
 	IDLE,
@@ -95,6 +96,10 @@ func _on_shoot_cooldown_timeout():
 func _on_noise_detection_area_entered(area):
 	if area.owner is Arrow:
 		var a = area.owner as Arrow
-		if a.caster != owner:
+		if a.caster != owner and !arrows_to_ignore.has(a):
 			noise_source = area.owner
-		
+
+
+
+func _on_shieldbox_bounced(projectile):
+	arrows_to_ignore.push_back(projectile)

@@ -42,6 +42,7 @@ func _physics_process(delta):
 		velocity = velocity.bounce(collision.normal)*0.9 
 		if velocity.length_squared() > 50.0:
 			emit_signal("bounced")
+			
 		else:
 			queue_free()
 		

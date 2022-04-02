@@ -19,6 +19,10 @@ onready var sprite := $Sprite
 onready var animation : AnimationPlayer = $AnimationPlayer
 onready var floor_check := $floor_check
 onready var shooter := $shooter
+onready var controller := $controller
+export (float, -360, 360) var look_rotation_degrees := 0.0
+
+
 var background_room_hole = []
 var air = false
 var rope = null
@@ -26,6 +30,10 @@ var facing_dir := 1.0 setget set_facing_dir
 var can_interact = true
 
 const sqrt_2_inv =  1.0/sqrt(2.0)
+
+func _ready():
+	if "rotation_degrees" in controller:
+		controller.rotation_degrees = look_rotation_degrees
 
 func _physics_process(delta):
 	if can_interact and input.is_action_just_pressed("reel_out"):

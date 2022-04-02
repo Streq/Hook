@@ -15,7 +15,6 @@ frame = 3
 [node name="shieldbox" parent="rotate_to_aim" index="0" instance=ExtResource( 3 )]
 
 [node name="controller" parent="." index="10"]
-rotation = 3.14159
 vision_angle = 210.0
 
 [node name="CollisionShape2D" parent="controller/player_detection" index="0"]
@@ -23,5 +22,7 @@ shape = SubResource( 2 )
 
 [node name="shoot_cooldown" parent="controller" index="1"]
 wait_time = 0.1
+
+[connection signal="bounced" from="rotate_to_aim/shieldbox" to="controller" method="_on_shieldbox_bounced"]
 
 [editable path="controller"]

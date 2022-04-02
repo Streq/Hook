@@ -33,6 +33,7 @@ tile_data = PoolIntArray( -7667740, 0, 0, -7667739, 0, 0, -7667738, 0, 0, -76677
 
 [node name="elite_grunt3" parent="." instance=ExtResource( 7 )]
 position = Vector2( 360, 248 )
+look_rotation_degrees = 180.0
 
 [node name="grunt4" parent="." instance=ExtResource( 5 )]
 position = Vector2( 336, -1264 )
@@ -42,9 +43,11 @@ position = Vector2( -272, -1624 )
 
 [node name="grunt6" parent="." instance=ExtResource( 5 )]
 position = Vector2( 312, -2256 )
+look_rotation_degrees = 120.0
 
 [node name="grunt8" parent="." instance=ExtResource( 5 )]
 position = Vector2( 72, -2704 )
+look_rotation_degrees = 60.0
 
 [node name="goalzone" parent="." instance=ExtResource( 9 )]
 

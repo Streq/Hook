@@ -7,3 +7,5 @@
 
 [node name="shieldbox" parent="rotate_to_aim" index="1" instance=ExtResource( 2 )]
 _owner = NodePath("../..")
+
+[connection signal="bounced" from="rotate_to_aim/shieldbox" to="controller" method="_on_shieldbox_bounced"]

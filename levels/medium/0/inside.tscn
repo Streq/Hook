@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://baddies/elite_turret.tscn" type="PackedScene" id=1]
 [ext_resource path="res://terrain/room_change_area.gd" type="Script" id=2]
@@ -19,87 +19,6 @@ extents = Vector2( 112, 32 )
 
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 144, 48 )
-
-[sub_resource type="Animation" id=9]
-resource_name = "air"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 3 ]
-}
-
-[sub_resource type="Animation" id=10]
-resource_name = "idle"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
-
-[sub_resource type="Animation" id=11]
-resource_name = "run"
-length = 0.4
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 1, 2 ]
-}
-
-[sub_resource type="Animation" id=12]
-resource_name = "RESET"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("exclamation:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-
-[sub_resource type="Animation" id=13]
-resource_name = "heard_noise"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("exclamation:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
 
 [node name="Node2D" type="Node2D"]
 
@@ -146,24 +65,11 @@ tile_data = PoolIntArray( 983040, 0, 0, 983041, 0, 0, 983042, 0, 0, 983043, 0, 0
 
 [node name="grunt" parent="." instance=ExtResource( 19 )]
 position = Vector2( 928, 112 )
-
-[node name="controller" parent="grunt" index="10"]
-rotation = 3.14159
+look_rotation_degrees = 120.0
 
 [node name="grunt2" parent="." instance=ExtResource( 19 )]
 position = Vector2( 1248, 112 )
-
-[node name="AnimationPlayer" parent="grunt2" index="5"]
-anims/air = SubResource( 9 )
-anims/idle = SubResource( 10 )
-anims/run = SubResource( 11 )
-
-[node name="sign_animation" parent="grunt2" index="8"]
-anims/RESET = SubResource( 12 )
-anims/heard_noise = SubResource( 13 )
-
-[node name="controller" parent="grunt2" index="10"]
-rotation = 1.5708
+look_rotation_degrees = 60.0
 
 [node name="turret" parent="." instance=ExtResource( 1 )]
 position = Vector2( 0, 48 )
@@ -179,5 +85,3 @@ text = "red mfs
 shoot fast!"
 
 [editable path="killzone"]
-[editable path="grunt"]
-[editable path="grunt2"]

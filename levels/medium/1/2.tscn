@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://restart_trigger.gd" type="Script" id=1]
 [ext_resource path="res://player/camera.gd" type="Script" id=2]
@@ -10,8 +10,7 @@
 [ext_resource path="res://baddies/turret_aiming_up.tscn" type="PackedScene" id=8]
 [ext_resource path="res://baddies/turret.tscn" type="PackedScene" id=9]
 [ext_resource path="res://terrain/ground/unpierceable_ground.tscn" type="PackedScene" id=10]
-[ext_resource path="res://baddies/grunt.tscn" type="PackedScene" id=11]
-[ext_resource path="res://baddies/shieldbox.tscn" type="PackedScene" id=12]
+[ext_resource path="res://baddies/grunt_with_shield.tscn" type="PackedScene" id=11]
 [ext_resource path="res://terrain/ground/ground.tres" type="TileSet" id=13]
 [ext_resource path="res://entities/right_door_prop.tscn" type="PackedScene" id=14]
 [ext_resource path="res://terrain/black_cover.tscn" type="PackedScene" id=16]
@@ -44,14 +43,9 @@ tile_data = PoolIntArray( -720918, 2, 0, -720917, 2, 0, -720916, 2, 0, -720915, 
 [node name="door2" parent="terrain" instance=ExtResource( 7 )]
 position = Vector2( 2296, -240 )
 
-[node name="grunt" parent="." instance=ExtResource( 11 )]
+[node name="grunt_with_shield" parent="." instance=ExtResource( 11 )]
 position = Vector2( 944, 208 )
-
-[node name="shieldbox" parent="grunt/rotate_to_aim" index="1" instance=ExtResource( 12 )]
-_owner = NodePath("../..")
-
-[node name="controller" parent="grunt" index="10"]
-rotation = 3.14159
+look_rotation_degrees = 180.0
 
 [node name="killzone" parent="." instance=ExtResource( 6 )]
 
@@ -116,5 +110,4 @@ position = Vector2( 960, 688 )
 
 [connection signal="dead" from="player" to="player/restart_on_death" method="trigger"]
 
-[editable path="grunt"]
 [editable path="killzone"]
