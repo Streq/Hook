@@ -61,7 +61,7 @@ func change_layer(dir):
 		tween.interpolate_property(old_layer, "self_modulate", Color.white, Color.white.darkened(DARKEN_FACTOR), 0.5)
 		tween.interpolate_property(layer, "self_modulate", Color.transparent, Color.white, 0.5)
 #		tween.interpolate_property(layer, "self_modulate", layer.self_modulate, Color.white, 0.5)
-		tween.interpolate_property(layers_node, "offset", Vector2.ZERO, Global.ISOMETRIC_OFFSET, 0.5)
+		tween.interpolate_property(layers_node, "offset", Vector2.ZERO, Global.ISOMETRIC_OFFSET/Global.zoom, 0.5)
 		tween.start()
 		yield(tween,"tween_all_completed")
 	if dir < 0:
@@ -69,7 +69,7 @@ func change_layer(dir):
 		transparent.a = 0
 		tween.interpolate_property(old_layer, "self_modulate", old_layer.self_modulate, transparent, 0.5)
 		tween.interpolate_property(layer, "self_modulate", layer.self_modulate, Color.white, 0.5)
-		tween.interpolate_property(layers_node, "offset", Vector2.ZERO, -Global.ISOMETRIC_OFFSET, 0.5)
+		tween.interpolate_property(layers_node, "offset", Vector2.ZERO, -Global.ISOMETRIC_OFFSET/Global.zoom, 0.5)
 		tween.start()
 		yield(tween,"tween_all_completed")
 	

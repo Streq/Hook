@@ -1,5 +1,5 @@
 extends Node
-
+signal zoom_changed()
 #offset between two layers so that it looks like 
 #terrain in one is right behind terrain in the other
 const ISOMETRIC_OFFSET := Vector2(14.0, -6.0)
@@ -7,6 +7,7 @@ const ISOMETRIC_OFFSET := Vector2(14.0, -6.0)
 
 const SAVE_PATH = "user://savegame.save"
 
+var zoom = Vector2(1,1)
 
 
 
@@ -42,3 +43,9 @@ func _input(event):
 		restart()
 	if event.is_action_pressed("toggle_fullscreen"):
 		OS.window_fullscreen = !OS.window_fullscreen
+	if event.is_action("zoom_in"):
+		zoom = Vector2(1,1)
+		emit_signal("zoom_changed")
+	elif event.is_action("zoom_out"):
+		zoom = Vector2(2,2)
+		emit_signal("zoom_changed")

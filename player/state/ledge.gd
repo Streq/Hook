@@ -17,7 +17,7 @@ func update(delta:float):
 	var ledge_dir = float(!right_ledge.disabled) - float(!left_ledge.disabled)
 	var ledge = left_ledge if ledge_dir<0 else right_ledge
 	
-	p.can_interact = !is_instance_valid(p.shooter.rope)
+	p.can_interact = false
 	p.animation.play("idle")
 	
 	

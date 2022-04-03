@@ -16,7 +16,11 @@
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=14]
 
 [node name="level" instance=ExtResource( 1 )]
+follow_viewport_enable = true
 player = NodePath("layers/layer/Viewport/Node2D/player")
+
+[node name="layers" parent="." index="0"]
+follow_viewport_enable = true
 
 [node name="Node2D" type="Node2D" parent="layers/layer/Viewport" index="1"]
 

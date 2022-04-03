@@ -1,137 +1,74 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://player/camera.gd" type="Script" id=1]
-[ext_resource path="res://restart_trigger.gd" type="Script" id=2]
-[ext_resource path="res://player/player_template.tscn" type="PackedScene" id=3]
-[ext_resource path="res://player/controller.tscn" type="PackedScene" id=4]
+[ext_resource path="res://entities/left_door.tscn" type="PackedScene" id=1]
+[ext_resource path="res://terrain/background_wall.tscn" type="PackedScene" id=2]
+[ext_resource path="res://terrain/ground/unpierceable_ground.tscn" type="PackedScene" id=3]
+[ext_resource path="res://entities/left_door_prop.tscn" type="PackedScene" id=4]
 [ext_resource path="res://terrain/ground/ground.tscn" type="PackedScene" id=5]
 [ext_resource path="res://terrain/hazard/killzone.tscn" type="PackedScene" id=6]
-[ext_resource path="res://terrain/goalzone/goalzone.tscn" type="PackedScene" id=7]
-[ext_resource path="res://baddies/grunt.tscn" type="PackedScene" id=8]
-[ext_resource path="res://baddies/turret.tscn" type="PackedScene" id=9]
+[ext_resource path="res://terrain/change_layer_area.tscn" type="PackedScene" id=7]
+[ext_resource path="res://player/player.tscn" type="PackedScene" id=8]
 
-[sub_resource type="Animation" id=1]
-resource_name = "air"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 3 ]
-}
+[sub_resource type="ConvexPolygonShape2D" id=3]
+points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "idle"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
+[sub_resource type="StreamTexture" id=4]
+load_path = "res://.import/icon32.png-bb49252428ae47d6dccd64474c23761d.stex"
 
-[sub_resource type="Animation" id=3]
-resource_name = "run"
-length = 0.4
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 1, 2 ]
-}
-
-[sub_resource type="Animation" id=4]
-resource_name = "RESET"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("exclamation:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-
-[sub_resource type="Animation" id=5]
-resource_name = "heard_noise"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("exclamation:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
+[sub_resource type="TileSet" id=2]
+0/name = "icon32.png 0"
+0/texture = SubResource( 4 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 32, 32 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 3 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 3 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
 
 [node name="Node2D" type="Node2D"]
 
-[node name="terrain" parent="." instance=ExtResource( 5 )]
-tile_data = PoolIntArray( 65535, 1, 0, 327673, 1, 0, 327683, 1, 0, 720897, 1, 65536, 786432, 1, 1, 786433, 1, 196611, 917500, 1, 65536, 983036, 1, 131072, 1048572, 1, 131072, 1114100, 1, 1, 1114101, 1, 2, 1114102, 1, 2, 1114103, 1, 2, 1114104, 1, 2, 1114105, 1, 2, 1114106, 1, 2, 1114107, 1, 2, 1114108, 1, 196610, 1114109, 1, 2, 1114110, 1, 2, 1114111, 1, 2, 1048576, 1, 2, 1048577, 1, 2, 1048578, 1, 2, 1048579, 1, 2, 1048580, 1, 2, 1048581, 1, 2, 1048582, 1, 2, 1048583, 1, 3 )
+[node name="map" type="Node2D" parent="."]
 
-[node name="killzone" parent="." instance=ExtResource( 6 )]
+[node name="terrain" parent="map" instance=ExtResource( 5 )]
+tile_data = PoolIntArray( 20, 0, 8, 21, 0, 10, 22, 0, 10, 23, 0, 10, 24, 0, 10, 25, 0, 10, 26, 0, 10, 27, 0, 10, 28, 0, 10, 29, 0, 10, 30, 0, 10, 31, 0, 10, 32, 0, 10, 33, 0, 10, 34, 0, 10, 35, 0, 10, 36, 0, 10, 37, 0, 10, 38, 0, 10, 39, 0, 10, 40, 0, 10, 41, 0, 10, 42, 0, 10, 43, 0, 11, 65556, 0, 65544, 65557, 0, 131078, 65558, 0, 196617, 65559, 0, 196617, 65560, 0, 196617, 65561, 0, 196617, 65562, 0, 196617, 65563, 0, 196617, 65564, 0, 196617, 65565, 0, 196617, 65566, 0, 196617, 65567, 0, 196617, 65568, 0, 196617, 65569, 0, 196617, 65570, 0, 196617, 65571, 0, 196617, 65572, 0, 196617, 65573, 0, 196617, 65574, 0, 196617, 65575, 0, 196617, 65576, 0, 196617, 65577, 0, 196617, 65578, 0, 196617, 65579, 0, 131082, 65580, 0, 11, 131092, 0, 131076, 131093, 0, 196619, 131115, 0, 65544, 131116, 0, 131083, 196628, 0, 131072, 196651, 0, 65544, 196652, 0, 131083, 262164, 0, 131072, 262187, 0, 65544, 262188, 0, 131083, 327700, 0, 65540, 327701, 0, 11, 327723, 0, 65544, 327724, 0, 131083, 393236, 0, 65544, 393237, 0, 131083, 393259, 0, 65544, 393260, 0, 131083, 458772, 0, 65544, 458773, 0, 131083, 458795, 0, 65544, 458796, 0, 131083, 524308, 0, 65544, 524309, 0, 131083, 524331, 0, 65544, 524332, 0, 131083, 589844, 0, 65544, 589845, 0, 131083, 589867, 0, 65544, 589868, 0, 131083, 655365, 0, 1, 655366, 0, 2, 655367, 0, 2, 655368, 0, 3, 655380, 0, 65544, 655381, 0, 131083, 655403, 0, 65544, 655404, 0, 131083, 720905, 0, 65546, 720916, 0, 196616, 720917, 0, 131082, 720918, 0, 10, 720919, 0, 10, 720920, 0, 10, 720921, 0, 10, 720922, 0, 10, 720923, 0, 10, 720924, 0, 11, 720939, 0, 65544, 720940, 0, 131083, 786453, 0, 196616, 786454, 0, 196617, 786455, 0, 196617, 786456, 0, 131077, 786457, 0, 131081, 786458, 0, 131081, 786459, 0, 131081, 786460, 0, 65542, 786461, 0, 10, 786462, 0, 10, 786463, 0, 10, 786464, 0, 11, 786475, 0, 65544, 786476, 0, 131083, 851992, 0, 196616, 851993, 0, 196617, 851994, 0, 196617, 851995, 0, 196618, 851996, 0, 196617, 851997, 0, 196617, 851998, 0, 196617, 851999, 0, 196617, 852000, 0, 131079, 852011, 0, 65544, 852012, 0, 131083, 917531, 0, 131072, 917536, 0, 131072, 917547, 0, 65544, 917548, 0, 131083, 983066, 0, 65537, 983067, 0, 196611, 983072, 0, 196609, 983073, 0, 65539, 983083, 0, 65544, 983084, 0, 131083, 1048602, 0, 131072, 1048609, 0, 131072, 1048619, 0, 196616, 1048620, 0, 196619, 1114137, 0, 1, 1114138, 0, 131075, 1114145, 0, 196609, 1114146, 0, 65539, 1179674, 0, 131072, 1179682, 0, 131073, 1179683, 0, 2, 1179684, 0, 2, 1179685, 0, 2, 1179686, 0, 2, 1179687, 0, 2, 1179688, 0, 3, 1245210, 0, 196608, 1245218, 0, 131072, 1310754, 0, 131072, 1376290, 0, 131072, 1441813, 0, 8, 1441814, 0, 11, 1441826, 0, 131072, 1507348, 0, 8, 1507349, 0, 65541, 1507350, 0, 131083, 1507362, 0, 131072, 1572884, 0, 196616, 1572885, 0, 196617, 1572886, 0, 196619, 1572898, 0, 131072, 1638434, 0, 131072, 1703948, 0, 1, 1703949, 0, 65539, 1703970, 0, 131072, 1769485, 0, 196609, 1769486, 0, 3, 1769506, 0, 131072, 1835023, 0, 1, 1835024, 0, 3, 1835042, 0, 131072, 1900561, 0, 1, 1900562, 0, 3, 1900578, 0, 131072, 1966099, 0, 1, 1966100, 0, 2, 1966101, 0, 3, 1966114, 0, 131072, 2031638, 0, 1, 2031639, 0, 2, 2031640, 0, 65539, 2031650, 0, 131072, 2097176, 0, 196608, 2097186, 0, 131072, 2162722, 0, 131072, 2228258, 0, 196608 )
 
-[node name="player" parent="." instance=ExtResource( 3 )]
-position = Vector2( -88, 496 )
+[node name="background_wall" parent="map/terrain" instance=ExtResource( 2 )]
 
-[node name="controller" parent="player" instance=ExtResource( 4 )]
+[node name="killzone" parent="map/terrain" instance=ExtResource( 6 )]
 
-[node name="restart_on_death" type="Node" parent="player"]
-script = ExtResource( 2 )
+[node name="killzone" parent="map/terrain/killzone" index="0"]
+tile_data = PoolIntArray( -131065, 0, 1, -131064, 0, 2, -131063, 0, 2, -131062, 0, 2, -131061, 0, 2, -131060, 0, 65539, -131057, 0, 65536, -65536, 0, 65537, -65535, 0, 2, -65534, 0, 2, -65533, 0, 2, -65532, 0, 2, -65531, 0, 2, -65530, 0, 3, -65524, 0, 196609, -65523, 0, 2, -65522, 0, 2, -65521, 0, 131074, -65520, 0, 2, -65519, 0, 2, -65518, 0, 2, -65517, 0, 2, -65516, 0, 3, 65534, 0, 65537, 65535, 0, 2, 0, 0, 196611, 15, 0, 131072, 131070, 0, 131072, 65551, 0, 131072, 196606, 0, 131072, 131087, 0, 196608, 262142, 0, 131072, 327678, 0, 131072, 393214, 0, 131072, 458750, 0, 131072, 524286, 0, 131073, 524287, 0, 65539, 589822, 0, 131073, 589823, 0, 131075, 655358, 0, 131073, 655359, 0, 131075, 720894, 0, 131073, 720895, 0, 131075, 786430, 0, 131073, 786431, 0, 196611, 851966, 0, 131072, 786432, 0, 65536, 786446, 0, 65537, 786447, 0, 65539, 917502, 0, 131072, 851968, 0, 131072, 851982, 0, 131073, 851983, 0, 131075, 983038, 0, 131072, 917504, 0, 131072, 917518, 0, 131073, 917519, 0, 131075, 1048574, 0, 131072, 983040, 0, 131072, 983054, 0, 131073, 983055, 0, 131075, 1114110, 0, 131072, 1048576, 0, 131072, 1048581, 0, 65537, 1048582, 0, 65539, 1048590, 0, 131073, 1048591, 0, 131075, 1179646, 0, 131072, 1114112, 0, 131072, 1114116, 0, 65537, 1114117, 0, 196610, 1114118, 0, 196611, 1114126, 0, 131073, 1114127, 0, 131075, 1114156, 0, 65536, 1245182, 0, 131072, 1179648, 0, 131072, 1179652, 0, 196608, 1179655, 0, 1, 1179656, 0, 3, 1179662, 0, 131073, 1179663, 0, 131075, 1179692, 0, 131072, 1310718, 0, 131072, 1245184, 0, 131072, 1245187, 0, 0, 1245193, 0, 1, 1245194, 0, 3, 1245198, 0, 131073, 1245199, 0, 131075, 1245228, 0, 131072, 1376254, 0, 131072, 1310720, 0, 196608, 1310722, 0, 0, 1310731, 0, 65536, 1310734, 0, 131073, 1310735, 0, 131075, 1310764, 0, 131072, 1441790, 0, 131072, 1376257, 0, 65536, 1376267, 0, 196609, 1376268, 0, 2, 1376269, 0, 65538, 1376270, 0, 131074, 1376271, 0, 196611, 1376300, 0, 131072, 1507326, 0, 131072, 1441793, 0, 196609, 1441794, 0, 65539, 1441805, 0, 196609, 1441806, 0, 196611, 1441836, 0, 131072, 1572862, 0, 131072, 1507330, 0, 196609, 1507331, 0, 65539, 1507372, 0, 131072, 1638398, 0, 131072, 1572867, 0, 196609, 1572868, 0, 3, 1572908, 0, 131072, 1703934, 0, 131072, 1638405, 0, 0, 1638444, 0, 131072, 1769470, 0, 131072, 1703942, 0, 1, 1703943, 0, 65539, 1703980, 0, 131072, 1835006, 0, 131072, 1769479, 0, 196609, 1769480, 0, 3, 1769516, 0, 131072, 1900542, 0, 131072, 1835052, 0, 131072, 1966078, 0, 131072, 1900588, 0, 131072, 2031614, 0, 131072, 1966124, 0, 131072, 2097150, 0, 131072, 2031660, 0, 131072, 2162686, 0, 131072, 2097196, 0, 131072, 2228222, 0, 131072, 2162732, 0, 131072, 2293758, 0, 131072, 2228268, 0, 131072, 2359294, 0, 131072, 2293804, 0, 131072, 2424830, 0, 131072, 2359340, 0, 131072, 2490366, 0, 131072, 2424876, 0, 131072, 2555902, 0, 131072, 2490412, 0, 131072, 2621438, 0, 131072, 2555948, 0, 131072, 2686974, 0, 131072, 2621484, 0, 131072, 2752510, 0, 131072, 2687020, 0, 131072, 2818046, 0, 131072, 2752556, 0, 131072, 2883582, 0, 131072, 2818092, 0, 131072, 2949118, 0, 131072, 2883628, 0, 131072, 3014654, 0, 131072, 2949164, 0, 131072, 3080190, 0, 131072, 3014700, 0, 131072, 3145726, 0, 131072, 3080236, 0, 131072, 3211262, 0, 131072, 3145772, 0, 131072, 3276798, 0, 196609, 3276799, 0, 2, 3211264, 0, 2, 3211265, 0, 2, 3211266, 0, 2, 3211267, 0, 2, 3211268, 0, 2, 3211269, 0, 2, 3211270, 0, 2, 3211271, 0, 2, 3211272, 0, 2, 3211273, 0, 2, 3211274, 0, 2, 3211275, 0, 2, 3211276, 0, 2, 3211277, 0, 2, 3211278, 0, 2, 3211279, 0, 2, 3211280, 0, 2, 3211281, 0, 2, 3211282, 0, 2, 3211283, 0, 2, 3211284, 0, 2, 3211285, 0, 2, 3211286, 0, 2, 3211287, 0, 2, 3211288, 0, 2, 3211289, 0, 2, 3211290, 0, 2, 3211291, 0, 2, 3211292, 0, 2, 3211293, 0, 2, 3211294, 0, 2, 3211295, 0, 2, 3211296, 0, 2, 3211297, 0, 2, 3211298, 0, 2, 3211299, 0, 2, 3211300, 0, 2, 3211301, 0, 2, 3211302, 0, 2, 3211303, 0, 2, 3211304, 0, 2, 3211305, 0, 2, 3211306, 0, 2, 3211307, 0, 2, 3211308, 0, 196611 )
+
+[node name="unpierceable_terrain" parent="map/terrain" instance=ExtResource( 3 )]
+tile_set = SubResource( 2 )
+
+[node name="change_layer_area" parent="map/terrain" instance=ExtResource( 7 )]
+
+[node name="door" parent="map" instance=ExtResource( 1 )]
+position = Vector2( 736, 336 )
+
+[node name="prop_door" parent="map" instance=ExtResource( 4 )]
+position = Vector2( 184, 304 )
+
+[node name="player" parent="." instance=ExtResource( 8 )]
+position = Vector2( 232, 304 )
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 current = true
-script = ExtResource( 1 )
+zoom = Vector2( 2, 2 )
 
-[node name="goalzone" parent="." instance=ExtResource( 7 )]
-
-[node name="grunt" parent="." instance=ExtResource( 8 )]
-position = Vector2( 4672, -352 )
-
-[node name="AnimationPlayer" parent="grunt" index="5"]
-anims/air = SubResource( 1 )
-anims/idle = SubResource( 2 )
-anims/run = SubResource( 3 )
-
-[node name="sign_animation" parent="grunt" index="8"]
-anims/RESET = SubResource( 4 )
-anims/heard_noise = SubResource( 5 )
-
-[node name="controller" parent="grunt" index="10"]
-rotation = 3.14159
-
-[node name="turret2" parent="." instance=ExtResource( 9 )]
-position = Vector2( 4640, -128 )
-
-[connection signal="dead" from="player" to="player/restart_on_death" method="trigger"]
-
-[editable path="killzone"]
-[editable path="goalzone"]
-[editable path="grunt"]
+[editable path="map/terrain/killzone"]
+[editable path="map/terrain/change_layer_area"]
