@@ -12,8 +12,10 @@ func in_focus():
 func out_of_focus():
 	for action in input.get_actions():
 		input.set_action_pressed(action, false)
-
+var i = 0
 func _physics_process(delta):
+#	print(i)
+#	i+=1
 	input.dir = InputUtils.get_input_dir()
 	input.aim_angle = InputUtils.get_dist_to_mouse(get_parent()).angle()
 
@@ -33,6 +35,7 @@ func _input(event):
 	
 	for action in input.get_actions():
 		if event.is_action(action):
+#			print("event_pressed: ", event.is_pressed())
 			input.set_action_pressed(action, event.is_pressed())
 			return
 	if event.is_action_pressed("ui_cancel"):

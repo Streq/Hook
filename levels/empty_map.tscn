@@ -1,0 +1,62 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://terrain/ground/ground.tscn" type="PackedScene" id=2]
+[ext_resource path="res://entities/left_door.tscn" type="PackedScene" id=6]
+[ext_resource path="res://terrain/hazard/killzone.tscn" type="PackedScene" id=7]
+[ext_resource path="res://terrain/background_wall.tscn" type="PackedScene" id=9]
+[ext_resource path="res://terrain/ground/unpierceable_ground.tscn" type="PackedScene" id=10]
+[ext_resource path="res://entities/left_door_prop.tscn" type="PackedScene" id=12]
+[ext_resource path="res://terrain/change_layer_area.tscn" type="PackedScene" id=13]
+
+[sub_resource type="ConvexPolygonShape2D" id=3]
+points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
+
+[sub_resource type="StreamTexture" id=4]
+load_path = "res://.import/icon32.png-bb49252428ae47d6dccd64474c23761d.stex"
+
+[sub_resource type="TileSet" id=2]
+0/name = "icon32.png 0"
+0/texture = SubResource( 4 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 32, 32 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 3 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 3 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+
+[node name="map" type="Node2D"]
+
+[node name="terrain" parent="." instance=ExtResource( 2 )]
+
+[node name="background_wall" parent="terrain" instance=ExtResource( 9 )]
+
+[node name="killzone" parent="terrain" instance=ExtResource( 7 )]
+
+[node name="unpierceable_terrain" parent="terrain" instance=ExtResource( 10 )]
+tile_set = SubResource( 2 )
+
+[node name="change_layer_area" parent="terrain" instance=ExtResource( 13 )]
+
+[node name="tiles" parent="terrain/change_layer_area" index="0"]
+tile_data = PoolIntArray(  )
+
+[node name="door" parent="." instance=ExtResource( 6 )]
+position = Vector2( 392, 208 )
+
+[node name="prop_door" parent="." instance=ExtResource( 12 )]
+position = Vector2( 280, 208 )
+
+[editable path="terrain/change_layer_area"]

@@ -39,6 +39,17 @@ func has_action(action):
 func get_actions():
 	return buttons.keys()
 
+var i = 0
+func _physics_process(delta):
+	var button = buttons["reel_out"]
+#	print(i)
+#	i+=1
+#	if button.pressed and button.just_updated:
+#		print(button.pressed, " ", button.just_updated)
+#	elif button.pressed:
+#		print(button.pressed)
+	
+
 class InputButton:
 	var pressed := false setget set_pressed
 	var just_updated := false
