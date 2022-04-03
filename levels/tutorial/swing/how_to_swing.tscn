@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://restart_trigger.gd" type="Script" id=1]
 [ext_resource path="res://player/camera.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://entities/right_door_prop.tscn" type="PackedScene" id=9]
 [ext_resource path="res://terrain/black_cover.tscn" type="PackedScene" id=10]
 [ext_resource path="res://entities/left_door.tscn" type="PackedScene" id=11]
+[ext_resource path="res://levels/label.tscn" type="PackedScene" id=12]
 
 [node name="Node2D" type="Node2D"]
 
@@ -46,18 +47,14 @@ script = ExtResource( 2 )
 
 [node name="controller" parent="player" instance=ExtResource( 4 )]
 
-[node name="Label" type="Label" parent="."]
-margin_left = -152.0
-margin_top = 336.0
-margin_right = 99.0
-margin_bottom = 469.0
-rect_scale = Vector2( 2, 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="bouncy_wall" parent="." instance=ExtResource( 8 )]
 tile_data = PoolIntArray( -393231, 0, 0, -393230, 0, 0, -393229, 0, 0, -393228, 0, 0, -393227, 0, 0, -393226, 0, 0, -393225, 0, 0, -393224, 0, 0, -393223, 0, 0, -393222, 0, 0, -393221, 0, 0, -393220, 0, 0, -393219, 0, 0, -393218, 0, 0, -393217, 0, 0, -458752, 0, 0, -458750, 0, 0, -458749, 0, 0, -458748, 0, 0, -458747, 0, 0, -458746, 0, 0, -458745, 0, 0, -458744, 0, 0, -458743, 0, 0, -458742, 0, 0, -458741, 0, 0, -458740, 0, 0, -458739, 0, 0, -458738, 0, 0, -458737, 0, 0, -458736, 0, 0, -327695, 0, 0, -393200, 0, 0, -262159, 0, 0, -327664, 0, 0, -196623, 0, 0, -262128, 0, 0, -131087, 0, 0, -196592, 0, 0, -65551, 0, 0, -131056, 0, 0, -15, 0, 0, -65520, 0, 0, 65521, 0, 0, 16, 0, 0, 131057, 0, 0, 65552, 0, 0, 196593, 0, 0, 131088, 0, 0, 262129, 0, 0, 196624, 0, 0, 327665, 0, 0, 262160, 0, 0, 393201, 0, 0, 327696, 0, 0, 458737, 0, 0, 524273, 0, 0, 589809, 0, 0 )
+
+[node name="label" parent="." instance=ExtResource( 12 )]
+position = Vector2( 208, 360 )
+text = "You can grab onto ledges 
+and climb up by pressing 
+Forward + Up"
 
 [connection signal="dead" from="player" to="player/restart_on_death" method="trigger"]
 

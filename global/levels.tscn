@@ -9,15 +9,15 @@
 [ext_resource path="res://levels/tutorial/enemies/enemies.tres" type="Resource" id=7]
 [ext_resource path="res://levels/tutorial/reel/reel.tres" type="Resource" id=8]
 [ext_resource path="res://levels/tutorial/swing/swing.tres" type="Resource" id=9]
+[ext_resource path="res://levels/medium/0/0_proper.tscn" type="PackedScene" id=10]
 [ext_resource path="res://menu/level_select_menu.tscn" type="PackedScene" id=11]
 [ext_resource path="res://levels/medium/1/1.tres" type="Resource" id=12]
 [ext_resource path="res://test_level.tscn" type="PackedScene" id=13]
 [ext_resource path="res://levels/level_definition.gd" type="Script" id=14]
-[ext_resource path="res://levels/medium/0/0.tscn" type="PackedScene" id=15]
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 14 )
-map = ExtResource( 15 )
+map = ExtResource( 10 )
 title = "ok what did you learn"
 description = "what did you"
 

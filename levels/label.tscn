@@ -18,6 +18,3 @@ margin_right = 17.5
 margin_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "label"
-align = 1
-valign = 1

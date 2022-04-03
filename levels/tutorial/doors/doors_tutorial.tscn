@@ -94,9 +94,6 @@ position = Vector2( 336, 16 )
 [node name="prop_door" parent="layers/layer2/Viewport/map" index="2"]
 position = Vector2( -48, 16 )
 
-[node name="Tween" type="Tween" parent="." index="1"]
-pause_mode = 2
-
 [editable path="layers/layer"]
 [editable path="layers/layer/Viewport/map/terrain/change_layer_area"]
 [editable path="layers/layer2"]

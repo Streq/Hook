@@ -25,6 +25,7 @@ script = ExtResource( 2 )
 [node name="label" parent="prompt" instance=ExtResource( 1 )]
 position = Vector2( 0, -32 )
 text = "E"
+align = 1
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
