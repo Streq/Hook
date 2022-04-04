@@ -45,7 +45,8 @@ position = Vector2( 464, 304 )
 [node name="label" parent="." instance=ExtResource( 8 )]
 position = Vector2( -96, 376 )
 text = "W - jump
-A, D - move"
+A, D - move
+T - restart"
 
 [connection signal="dead" from="player" to="player/restart_on_death" method="trigger"]
 

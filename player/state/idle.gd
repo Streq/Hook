@@ -14,7 +14,10 @@ func update(delta:float):
 	var p := owner as Player
 	var dir : Vector2 = p.get_input_dir()
 	p.facing_dir = dir.x
-	p.velocity = p.move_and_slide(p.velocity+dir*0.01, Vector2.UP)
+	var initial_velocity = p.velocity+dir*0.01
+	p.velocity = p.move_and_slide(initial_velocity, Vector2.UP)
+	p.check_death_worthy_collision(initial_velocity)
+	
 	p.velocity += p.gravity*delta
 	p.can_interact = p.is_on_floor() and !is_instance_valid(p.shooter.rope)
 	p._move(dir, delta)

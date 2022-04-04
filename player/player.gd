@@ -32,7 +32,7 @@ var can_interact = true
 const sqrt_2_inv =  1.0/sqrt(2.0)
 
 func _ready():
-	if "rotation_degrees" in controller:
+	if is_instance_valid(controller) and "rotation_degrees" in controller:
 		controller.rotation_degrees = look_rotation_degrees
 
 func _physics_process(delta):
@@ -100,4 +100,20 @@ func set_facing_dir(dir):
 	if s:
 		facing_dir = s
 		sprite.flip_h = s < 0
+		
+const death_thresshold_squared = 500000.0
+func check_death_worthy_collision(initial_velocity : Vector2):
+	for i in get_slide_count():
+		var collision := get_slide_collision(i)
+#		print(i, collision.remainder)
+		var velocity_of_collision = initial_velocity.project(collision.normal)
+#		if velocity_of_collision.length_squared() > 100:
+#			print(initial_velocity-collision.remainder, " vs ", initial_velocity.project(collision.normal))
+#			print(velocity_of_collision, " ", velocity_of_collision.length_squared())
+		if velocity_of_collision.length_squared() > death_thresshold_squared:
+			die()
+			return
+		initial_velocity = collision.remainder
+		
+#		print("normal: ", collision.normal, " remainder:", collision.remainder)
 		

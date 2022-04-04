@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://restart_trigger.gd" type="Script" id=1]
 [ext_resource path="res://player/camera.gd" type="Script" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://entities/right_door_prop.tscn" type="PackedScene" id=12]
 [ext_resource path="res://entities/right_door.tscn" type="PackedScene" id=13]
 [ext_resource path="res://terrain/black_cover.tscn" type="PackedScene" id=14]
+[ext_resource path="res://levels/label.tscn" type="PackedScene" id=15]
 
 [node name="Node2D" type="Node2D"]
 
@@ -89,6 +90,10 @@ rotation = 1.5708
 
 [node name="controller" parent="turret2" index="1"]
 rotation = -1.5708
+
+[node name="label" parent="." instance=ExtResource( 15 )]
+position = Vector2( -232, -256 )
+text = "mouse scroll - zoom-in/out"
 
 [connection signal="dead" from="player" to="player/restart_on_death" method="trigger"]
 [connection signal="trigger" from="trigger" to="door" method="queue_free"]

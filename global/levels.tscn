@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://levels/tutorial/jump/jump.tres" type="Resource" id=1]
 [ext_resource path="res://global/levels.gd" type="Script" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://levels/medium/1/1.tres" type="Resource" id=12]
 [ext_resource path="res://test_level.tscn" type="PackedScene" id=13]
 [ext_resource path="res://levels/level_definition.gd" type="Script" id=14]
+[ext_resource path="res://levels/medium/3/3.tscn" type="PackedScene" id=15]
+[ext_resource path="res://levels/you_won.tscn" type="PackedScene" id=16]
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 14 )
@@ -21,14 +23,21 @@ map = ExtResource( 10 )
 title = "ok what did you learn"
 description = "what did you"
 
+[sub_resource type="Resource" id=3]
+script = ExtResource( 14 )
+map = ExtResource( 15 )
+title = "some hook parkour"
+description = "do your thing"
+
 [sub_resource type="Resource" id=1]
 script = ExtResource( 14 )
 map = ExtResource( 13 )
-title = "ok let's go"
-description = "fuck it"
+title = "kill big boss and climb to the top"
+description = "damn right"
 
 [node name="Levels" type="Node"]
 script = ExtResource( 2 )
-levels = [ ExtResource( 1 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 4 ), ExtResource( 7 ), SubResource( 2 ), ExtResource( 12 ), SubResource( 1 ) ]
+levels = [ ExtResource( 1 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 4 ), ExtResource( 7 ), SubResource( 2 ), SubResource( 3 ), ExtResource( 12 ), SubResource( 1 ) ]
 level_select = ExtResource( 11 )
+win_screen = ExtResource( 16 )
 ssasa = "res://levels/medium/1/"

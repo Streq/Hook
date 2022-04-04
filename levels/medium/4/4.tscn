@@ -1,0 +1,67 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://terrain/ground/ground.tscn" type="PackedScene" id=1]
+[ext_resource path="res://terrain/hazard/killzone.tscn" type="PackedScene" id=2]
+[ext_resource path="res://entities/left_door.tscn" type="PackedScene" id=3]
+[ext_resource path="res://terrain/background_wall.tscn" type="PackedScene" id=4]
+[ext_resource path="res://terrain/ground/unpierceable_ground.tscn" type="PackedScene" id=5]
+[ext_resource path="res://entities/left_door_prop.tscn" type="PackedScene" id=6]
+[ext_resource path="res://terrain/change_layer_area.tscn" type="PackedScene" id=7]
+[ext_resource path="res://player/player.tscn" type="PackedScene" id=8]
+[ext_resource path="res://player/camera.tscn" type="PackedScene" id=9]
+
+[sub_resource type="ConvexPolygonShape2D" id=3]
+points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
+
+[sub_resource type="StreamTexture" id=4]
+load_path = "res://.import/icon32.png-bb49252428ae47d6dccd64474c23761d.stex"
+
+[sub_resource type="TileSet" id=2]
+0/name = "icon32.png 0"
+0/texture = SubResource( 4 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 32, 32 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 3 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 3 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+
+[node name="map" type="Node2D"]
+
+[node name="terrain" parent="." instance=ExtResource( 1 )]
+tile_data = PoolIntArray( -786425, 0, 65537, -786424, 0, 2, -786423, 0, 2, -786422, 0, 2, -786421, 0, 2, -786420, 0, 2, -786419, 0, 2, -786418, 0, 2, -786417, 0, 2, -786416, 0, 2, -786415, 0, 2, -786414, 0, 65539, -720889, 0, 131072, -720878, 0, 131072, -720872, 0, 65537, -720871, 0, 2, -720870, 0, 2, -720869, 0, 2, -720868, 0, 2, -720867, 0, 2, -720866, 0, 2, -720865, 0, 2, -720864, 0, 2, -720863, 0, 2, -720862, 0, 65539, -655353, 0, 131072, -655342, 0, 131072, -655336, 0, 131072, -655326, 0, 131072, -589817, 0, 131072, -589806, 0, 131072, -589800, 0, 131072, -589790, 0, 131072, -524281, 0, 131072, -524270, 0, 131072, -524264, 0, 131072, -524254, 0, 131072, -524249, 0, 65537, -524248, 0, 2, -524247, 0, 2, -524246, 0, 2, -524245, 0, 65539, -458745, 0, 131072, -458734, 0, 131072, -458728, 0, 131072, -458718, 0, 131072, -458713, 0, 131072, -458709, 0, 131072, -393209, 0, 131072, -393198, 0, 131072, -393192, 0, 131072, -393182, 0, 131072, -393177, 0, 131072, -393173, 0, 131072, -327673, 0, 131072, -327662, 0, 131072, -327656, 0, 131072, -327646, 0, 196609, -327645, 0, 2, -327644, 0, 2, -327643, 0, 2, -327642, 0, 2, -327641, 0, 196611, -327637, 0, 131072, -262137, 0, 131072, -262126, 0, 196609, -262125, 0, 2, -262124, 0, 2, -262123, 0, 2, -262122, 0, 2, -262121, 0, 2, -262120, 0, 196611, -262101, 0, 131072, -131079, 0, 65537, -131078, 0, 2, -131077, 0, 2, -131076, 0, 2, -131075, 0, 2, -131074, 0, 2, -131073, 0, 2, -196608, 0, 2, -196607, 0, 2, -196606, 0, 2, -196605, 0, 2, -196604, 0, 2, -196603, 0, 2, -196602, 0, 2, -196601, 0, 196611, -196565, 0, 131072, -65543, 0, 131072, -131029, 0, 131072, -7, 0, 131072, -65493, 0, 131072, 65529, 0, 131072, 40, 0, 1, 41, 0, 2, 42, 0, 2, 43, 0, 196611, 131065, 0, 131072, 65570, 0, 1, 65571, 0, 2, 65572, 0, 2, 65573, 0, 2, 65574, 0, 2, 65575, 0, 3, 196601, 0, 131072, 131098, 0, 8, 131099, 0, 10, 131100, 0, 10, 131101, 0, 6, 131102, 0, 2, 131103, 0, 2, 131104, 0, 2, 131105, 0, 3, 262137, 0, 196609, 262138, 0, 2, 262139, 0, 2, 262140, 0, 2, 262141, 0, 2, 262142, 0, 2, 262143, 0, 2, 196608, 0, 2, 196609, 0, 2, 196610, 0, 2, 196611, 0, 2, 196612, 0, 2, 196613, 0, 2, 196614, 0, 2, 196615, 0, 2, 196616, 0, 2, 196617, 0, 2, 196618, 0, 2, 196619, 0, 2, 196620, 0, 2, 196621, 0, 2, 196622, 0, 2, 196623, 0, 3, 196634, 0, 65544, 196635, 0, 131078, 196636, 0, 196617, 196637, 0, 196619, 262169, 0, 8, 262170, 0, 65545, 262171, 0, 196619, 327703, 0, 8, 327704, 0, 10, 327705, 0, 65541, 327706, 0, 131083, 393238, 0, 8, 393239, 0, 65545, 393240, 0, 196617, 393241, 0, 196617, 393242, 0, 196619, 458774, 0, 131076, 458775, 0, 196619, 524310, 0, 196608 )
+
+[node name="background_wall" parent="terrain" instance=ExtResource( 4 )]
+
+[node name="killzone" parent="terrain" instance=ExtResource( 2 )]
+
+[node name="unpierceable_terrain" parent="terrain" instance=ExtResource( 5 )]
+tile_set = SubResource( 2 )
+
+[node name="change_layer_area" parent="terrain" instance=ExtResource( 7 )]
+
+[node name="door" parent="." instance=ExtResource( 3 )]
+position = Vector2( 224, 2240 )
+
+[node name="prop_door" parent="." instance=ExtResource( 6 )]
+position = Vector2( -64, 80 )
+
+[node name="player" parent="." instance=ExtResource( 8 )]
+position = Vector2( 8, 56 )
+
+[node name="Camera2D" parent="player" instance=ExtResource( 9 )]
+
+[editable path="terrain/change_layer_area"]
