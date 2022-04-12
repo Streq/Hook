@@ -127,6 +127,7 @@ Levels="*res://global/levels.tscn"
 Pause="*res://global/pause.tscn"
 Math="*res://global/Math.gd"
 NodeUtils="*res://global/node_utils.gd"
+GlobalHud="*res://global/global_hud.tscn"
 
 [display]
 

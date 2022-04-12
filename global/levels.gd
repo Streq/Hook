@@ -19,7 +19,10 @@ func to_level(id):
 	current_level = id
 	var level
 	if levels.size() > id:
-		level = levels[current_level].map
+		var level_data = levels[current_level]
+		level = level_data.map
+		GlobalHud.update_level(str(id) + ". " + level_data.title)
+
 	elif !won:
 		level = win_screen 
 		won = true
@@ -27,3 +30,4 @@ func to_level(id):
 		level = level_select
 		won = false
 	get_tree().change_scene_to(level)
+	

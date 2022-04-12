@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://global/global_hud.gd" type="Script" id=1]
+[ext_resource path="res://asset/font/proggy_32.tres" type="DynamicFont" id=2]
+
+[node name="GlobalHud" type="CanvasLayer"]
+layer = 128
+script = ExtResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 5.0
+one_shot = true
+
+[node name="level_label" type="Label" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -17.5
+margin_top = -84.0
+margin_right = 17.5
+margin_bottom = -70.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = ExtResource( 2 )
+text = "level_name"
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

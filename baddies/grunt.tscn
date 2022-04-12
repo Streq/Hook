@@ -233,4 +233,5 @@ collision_mask = 2
 position = Vector2( 0, 16.5 )
 shape = SubResource( 11 )
 
+[connection signal="dead" from="." to="." method="queue_free"]
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]

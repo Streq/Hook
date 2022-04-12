@@ -78,7 +78,7 @@ func _jump(dir):
 		
 func die():
 	emit_signal("dead")
-	queue_free()
+#	queue_free()
 
 
 func _on_hurtbox_area_entered(area:Hitbox):
